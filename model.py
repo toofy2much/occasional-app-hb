@@ -91,7 +91,7 @@ class Greeting(db.Model):
     body = db.Column(db.Text, nullable=False)
     date = db.Column(db.Integer, nullable=False)
     title = db.Column(db.String) #db.ForeignKey("occasions.title")
-    occasion_id = db.Column(db.Integer)#db.ForeignKey("occasions.occasion_id"))
+    occasion_id = db.Column(db.Integer, db.ForeignKey("occasions.occasion_id"))
     reminder_date = db.Column(db.DateTime) #db.ForeignKey("occasions.reminder_date"))
     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
 

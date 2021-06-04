@@ -22,8 +22,6 @@ import model.py
 #     db.session.add(test_gretting) 
 #     db.session.commit()
 
-
-
 # @app.route('/register', methods=['POST'])
 # def register_user():
 #     email = request.form['email']
