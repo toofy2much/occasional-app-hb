@@ -13,7 +13,7 @@ class User(db.Model):
                        autoincrement=True)
     fname = db.Column(db.String, nullable=False)
     lname = db.Column(db.String, nullable=False)
-    email = db.Column(db.String, nullable=False)
+    email = db.Column(db.String, unique=True, nullable=False)
     phone = db.Column(db.Integer, nullable=False)
     password = db.Column(db.Integer, nullable=False)
 
@@ -37,30 +37,40 @@ class Contact(db.Model):
                            autoincrement=True)
     fname = db.Column(db.String, nullable=False)
     lname = db.Column(db.String, nullable=False)
-    email = db.Column(db.String, nullable=False)
+    email = db.Column(db.String, unique=True, nullable=False)
     phone = db.Column(db.Integer, nullable=False)
     date = db.Column(db.Integer, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
 
-    user = db.relationship("User", backref = "contacts")
+    user = db.relationship("User", backref= "contacts")
     #should there a min and max digits for date?*
+
+
+    def __repr__(self):
+        """Show info about users."""
+
+        return f"""<Contact contact_id={self.contact_id} fname={self.fname}
+                lname={self.lname} email={self.email} phone={self.phone}
+                date={self.date}>"""
+       
 
 
 class Occasion(db.Model):
     """Data model for a occasions."""
      
     __tablename__ = "occasions"
+
     occasion_id = db.Column(db.Integer,
                            primary_key=True,
                            autoincrement=True)
     title = db.Column(db.String, nullable=False)
     date = db.Column(db.Integer, nullable=False)
     reminder_date = db.Column(db.DateTime, nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey("Contacts.contact_id"))
-
+    contact_id = db.Column(db.Integer, db.ForeignKey("contacts.contact_id"))
+    
     #should there a min and max digits for date?*
 
-    contact = db.relationship("Contact", backref = "occasions")
+    contact = db.relationship("Contact", backref= "occasions")
    
     
     def __repr__(self):
@@ -79,22 +89,23 @@ class Greeting(db.Model):
                           autoincrement=True)
     body = db.Column(db.Text, nullable=False)
     date = db.Column(db.Integer, nullable=False)
-    #reminder_date = db.Column(db.DateTime, db.ForeignKey,("occasions.reminder_date"))
-    user_id = db.Column(db.Integer, db.ForeignKey("Users.user_id"))
+    title = db.Column(db.String, db.ForeignKey("occasions.title")
+    occasion_id = db.Column(db.Integer, db.ForeignKey("occasions.occasion_id"))
+    reminder_date = db.Column(db.DateTime, db.ForeignKey("occasions.reminder_date"))
+    user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
 
     #should there a min and max digits for date?*
 
-    occasion = db.relationship("Occasion", backref = "greetings")
-    #user = db.relationship("User", backref = "greetings")
-
+    occasion = db.relationship("Occasion", backref= "greetings")
+    user = db.relationship("User", backref= "greetings")
 
     
     def __repr__(self):
         """Show info about greetings."""
 
         return f"""<Greeting greeting_id={self.greeting_id}
-                occasion_id={self.occasion_id} title_id={self.title_id}
-                date={self.date} reminder_date_id={self.reminder_date_id}>"""
+                body={self.body} 
+                date={self.date}>"""
 
 
 def connect_to_db(app):
