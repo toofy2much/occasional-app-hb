@@ -14,7 +14,7 @@ class User(db.Model):
     fname = db.Column(db.String, nullable=False)
     lname = db.Column(db.String, nullable=False)
     email = db.Column(db.String, unique=True, nullable=False)
-    phone = db.Column(db.Integer, nullable=False)
+    phone = db.Column(db.String, nullable=False)
     password = db.Column(db.Integer, nullable=False)
 
     #should there a min and max digits for password and number*
@@ -38,8 +38,7 @@ class Contact(db.Model):
     fname = db.Column(db.String, nullable=False)
     lname = db.Column(db.String, nullable=False)
     email = db.Column(db.String, unique=True, nullable=False)
-    phone = db.Column(db.Integer, nullable=False)
-    date = db.Column(db.Integer, nullable=False)
+    phone = db.Column(db.String, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
 
     user = db.relationship("User", backref= "contacts")
@@ -50,8 +49,7 @@ class Contact(db.Model):
         """Show info about users."""
 
         return f"""<Contact contact_id={self.contact_id} fname={self.fname}
-                lname={self.lname} email={self.email} phone={self.phone}
-                date={self.date}>"""
+                lname={self.lname} email={self.email} phone={self.phone}>"""
        
 
 
@@ -64,8 +62,7 @@ class Occasion(db.Model):
                            primary_key=True,
                            autoincrement=True)
     title = db.Column(db.String, nullable=False)
-    date = db.Column(db.Integer, nullable=False)
-    reminder_date = db.Column(db.DateTime, nullable=False)
+    occasion_date = db.Column(db.String, nullable=False)
     contact_id = db.Column(db.Integer, db.ForeignKey("contacts.contact_id"))
     
     #should there a min and max digits for date?*
@@ -77,8 +74,8 @@ class Occasion(db.Model):
         """Show info about occasions."""
 
         return f"""<Occasion occasion_id={self.occasion_id}
-                 title={self.title} date={self.date}
-                 reminder_date={self.reminder_date}>"""
+                 title={self.title} occasion_date={self.occasion_date}>"""
+                 
 
 class Greeting(db.Model):
     """Data model for a greetings."""
@@ -88,14 +85,12 @@ class Greeting(db.Model):
     greeting_id = db.Column(db.Integer,
                           primary_key=True,
                           autoincrement=True)
-    body = db.Column(db.Text, nullable=False)
-    date = db.Column(db.Integer, nullable=False)
-    title = db.Column(db.String) #db.ForeignKey("occasions.title")
+    body = db.Column(db.Text, nullable=False)                         
     occasion_id = db.Column(db.Integer, db.ForeignKey("occasions.occasion_id"))
-    reminder_date = db.Column(db.DateTime) #db.ForeignKey("occasions.reminder_date"))
+    send_date = db.Column(db.String)
     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
 
-    #should there a min and max digits for date?*
+                                                         
 
     occasion = db.relationship("Occasion", backref= "greetings")
     user = db.relationship("User", backref= "greetings")
@@ -106,7 +101,7 @@ class Greeting(db.Model):
 
         return f"""<Greeting greeting_id={self.greeting_id}
                 body={self.body} 
-                date={self.date}>"""
+                send_date={self.send_date}>"""
 
 
 def connect_to_db(app):
@@ -120,7 +115,7 @@ def connect_to_db(app):
     print("Connected to db!")
     #db.create_all()
     #test_user = User(fname='test_first',lname='test_last', email='test@test.test', 
-    #                 phone= '6666666666', password='test')
+    #                 phone= 6666666666, password='test')
     #db.session.add(test_user) 
     #db.session.commit()
 
