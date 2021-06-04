@@ -2,7 +2,7 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
 db = SQLAlchemy()
-
+#app.secret_key = "SECRET"
 
 class User(db.Model):
     """Data model for a user."""
@@ -84,14 +84,15 @@ class Greeting(db.Model):
     """Data model for a greetings."""
      
     __tablename__ = "greetings"
+
     greeting_id = db.Column(db.Integer,
                           primary_key=True,
                           autoincrement=True)
     body = db.Column(db.Text, nullable=False)
     date = db.Column(db.Integer, nullable=False)
-    title = db.Column(db.String, db.ForeignKey("occasions.title")
-    occasion_id = db.Column(db.Integer, db.ForeignKey("occasions.occasion_id"))
-    reminder_date = db.Column(db.DateTime, db.ForeignKey("occasions.reminder_date"))
+    title = db.Column(db.String) #db.ForeignKey("occasions.title")
+    occasion_id = db.Column(db.Integer)#db.ForeignKey("occasions.occasion_id"))
+    reminder_date = db.Column(db.DateTime) #db.ForeignKey("occasions.reminder_date"))
     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
 
     #should there a min and max digits for date?*
