@@ -15,7 +15,7 @@ class User(db.Model):
     lname = db.Column(db.String, nullable=False)
     email = db.Column(db.String, unique=True, nullable=False)
     phone = db.Column(db.String, nullable=False)
-    password = db.Column(db.Integer, nullable=False)
+    password = db.Column(db.String, nullable=False)
 
     #should there a min and max digits for password and number*
     

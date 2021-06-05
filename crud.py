@@ -1,25 +1,3 @@
-import model.py
-
-
-#test_user = User(fname='test_first',lname='test_last', email='test@test.test', 
-#                      phone= "6666666666", password='test')
-#     db.session.add(test_user) 
-#     db.session.commit()
-
-
-# test_contact= Contact(fname='cnt_first',lname='cnt_last', email='cntt@test.test', 
-#                      phone= "9999999999")
-#     db.session.add(test_contact) 
-#     db.session.commit()
-
-# test_occasion = Occasion(title='test_title', occasion_date='12/12/2021')  
-#     db.session.add(test_occasion) 
-#     db.session.commit()
-
-
-# test_greeting= Greeting(body='this is a test',send_date='11/13/2021')
-#     db.session.add(test_gretting) 
-#     db.session.commit()
 
 # @app.route('/register', methods=['POST'])
 # def register_user():
