@@ -6,8 +6,12 @@ import crud
 from jinja2 import StrictUndefined
 
 app = Flask(__name__)
-app.secret_key = "secret"
+#app.secret_key = "secret"
 app.jinja_env.undefined = StrictUndefined
+
+# @app.errorhandler(404)
+# def not_found(e): 
+#     return render_template("404.html")
 
 
 #You’ll need to import a couple more items before you’re able to
@@ -26,7 +30,6 @@ app.jinja_env.undefined = StrictUndefined
 
 # Call CRUD functions
 
-
 @app.route('/')
 def homepage():
     """View homepage."""
@@ -35,30 +38,32 @@ def homepage():
 
 
 @app.route('/register', methods=['POST'])
-# def 
-#     user= request.form.get('')
-#     crud.add_user()
-#     return render_template('homepage.html')
+def new_user():
+    user= request.form.get('fname','lname','email','phone','password')
+    crud.add_user('user')
+    return render_template('homepage.html')
 
 
-# @app.route('/login', methods=['POST'])
-#     request.form.get[]
-#     crud.verify_user()
-#     return render_template('homepage.html')
-# #@app.route('/handle-login', methods=['POST'])
+    @app.route('/login', methods=['POST'])
+    def current_user():
+        request.form.get['user']
+        crud.verify_user()
+        return render_template('homepage.html')
+
+# @app.route('/handle-login', methods=['POST'])
 # def handle_login():
 #     """Log user into application."""
 
-#     username = request.form['username']
+#     user= request.form['email']
 #     password = request.form['password']
 
-#     if password == 'let-me-in':   # FIXME
-#         session['current_user'] = username
-#         flash(f'Logged in as {username}')
-#         return redirect('/')
+#     if email == 'password':   
+#         session['user'] = fname
+#         alert(f'Logged in as {fname}')
+#         return redirect('/   ')
 
 #     else:
-#         flash('Wrong password!')
+#       
 #         return redirect('/login')
 
 

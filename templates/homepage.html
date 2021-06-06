@@ -1,29 +1,33 @@
-<!-- {% extends 'base.html' %} -->
+<!doctype html>
+
+{% extends 'base.html' %} 
 
 
 <!-- adds signup and login form that submits its data to POST/users -->
-<!--     
+   
 {% block title %}Occasional Occasion Reminder{% endblock %}
 
 {% block body %}
   <h1>Occasional Occasion Reminder App</h1>
 
   <h2>Create an Account</h2>
-  
+  <p>
   <form action="/registration" method="POST">
     <label>What is your first and last name? <input type="text" fname="user" lname="user"></label>
     <label>Email <input type="text" fname="email" lname= "email"><label/>
     <label>Phone <input type="text" fname="phone lname="phone email= "phone"><label/>
     <label>Password <input type="password" email="password"<label/>
     <input type="submit">
+    </p>
   </form>
   
   <h3>Log In</h3>
-
+  <p>
   <form action="/login" method="POST">
     <label>Email <input type="text" fname="email" lname="email"</label>
     <label>Password <input type="password" fname="password" lname="password"</label>
     <input type="submit">
+  </p>
   </form>
 
-{% endblock %} --> 
+{% endblock %} 
