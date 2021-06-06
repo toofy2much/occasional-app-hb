@@ -34,6 +34,32 @@ def homepage():
     return render_template('homepage.html')
 
 
+@app.route('/register', methods=['POST'])
+# def 
+#     user= request.form.get('')
+#     crud.add_user()
+#     return render_template('homepage.html')
+
+
+# @app.route('/login', methods=['POST'])
+#     request.form.get[]
+#     crud.verify_user()
+#     return render_template('homepage.html')
+# #@app.route('/handle-login', methods=['POST'])
+# def handle_login():
+#     """Log user into application."""
+
+#     username = request.form['username']
+#     password = request.form['password']
+
+#     if password == 'let-me-in':   # FIXME
+#         session['current_user'] = username
+#         flash(f'Logged in as {username}')
+#         return redirect('/')
+
+#     else:
+#         flash('Wrong password!')
+#         return redirect('/login')
 
 
 

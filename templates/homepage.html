@@ -6,37 +6,24 @@
 {% block title %}Occasional Occasion Reminder{% endblock %}
 
 {% block body %}
-  <h1>Do Not Forget!</h1>
+  <h1>Occasional Occasion Reminder App</h1>
 
   <h2>Create an Account</h2>
-  <form action="/users" method="POST">
-    <p>
-      Email <input type="text" name="email">
-    </p>
-
-    <p>
-      Password <input type="password" name="password">
-    </p>
-
-    <p>
-      <input type="submit">
-    </p>
-  </form>
-
-  <h3>Log In</h3>
-  <form action="/login" method="POST">
-    <p>
-      Email <input type="text" name="email">
-    </p>
-
-    <p>
-      Password <input type="password" name="password">
-    </p>
-
-    <p>
-      <input type="submit">
-    </p>
-  </form>
-
   
-{% endblock %} -->  -->
+  <form action="/registration" method="POST">
+    <label>What is your first and last name? <input type="text" fname="user" lname="user"></label>
+    <label>Email <input type="text" fname="email" lname= "email"><label/>
+    <label>Phone <input type="text" fname="phone lname="phone email= "phone"><label/>
+    <label>Password <input type="password" email="password"<label/>
+    <input type="submit">
+  </form>
+  
+  <h3>Log In</h3>
+
+  <form action="/login" method="POST">
+    <label>Email <input type="text" fname="email" lname="email"</label>
+    <label>Password <input type="password" fname="password" lname="password"</label>
+    <input type="submit">
+  </form>
+
+{% endblock %} --> 
