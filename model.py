@@ -6,8 +6,16 @@ db = SQLAlchemy()
 
 class User(db.Model):
     """Data model for a user."""
-     
+
     __tablename__ = "users"
+
+    def __init__(self, fname, lname, email, phone, password):
+        self.fname = fname
+        self.lname = lname
+        self.email = email
+        self.phone = phone
+        self.password = password
+
     user_id = db.Column(db.Integer,
                        primary_key=True,
                        autoincrement=True)

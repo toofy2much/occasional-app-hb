@@ -12,12 +12,12 @@
 
   <h2>Create an Account</h2>
   <p>
-  <form action="/registration" method="POST">
-    <label>What is your first? <input type="text" name="firstname"></label>
-    <label>Whay is your last name? <input type="text" name="lastname"></label>
+  <form action="/register" method="POST">
+    <label>What is your first? <input type="text" name="fname"></label>
+    <label>What is your last name? <input type="text" name="lname"></label>
     <label>Email <input type="text" name="email"></label>
     <label>Phone <input type="text" name="phone"></label>
-    <label>Password <input type="password" name="password"></label>
+    <label>Password <input type="text" name="password"></label>
     <input type="submit">
     </p>
   </form>
@@ -25,8 +25,8 @@
   <h3>Log In</h3>
   <p>
   <form action="/login" method="POST">
-    <label>Email <input type="text" fname="email" lname="email"></label>
-    <label>Password <input type="password" fname="password" lname="password"></label>
+    <label>Email <input type="text" name="email"></label>
+    <label>Password <input type="text" name="password"></label>
     <input type="submit">
   </p>
   </form>
