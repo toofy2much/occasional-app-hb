@@ -1,0 +1,32 @@
+<!doctype html>
+
+{% extends 'homepage.html' %} 
+
+
+<!-- adds new contacts to form that submits its data to POST/contacts -->
+   
+{% block title %}Reminder Contact Page{% endblock %}
+
+{% block body %}
+  <h1>Occasional Occasion Reminder App</h1>
+
+  <h2>Add A New Contact!</h2>
+  <p>
+  <form action="/registration" method="POST">
+    <label>First and last nameof recipient? <input type="text" fname="contact" lname="contact"></label>
+    <label>Email <input type="text" fname="email" lname= "email"><label/>
+    <label>Phone <input type="text" fname="phone lname="phone email= "phone"><label/>
+    <input type="submit">
+    </p>
+  </form>
+  
+  <!-- <h3>Select Greeting</h3>
+  <p>
+  <form action="/greeting" method="POST">
+    <label>Email <input type="text" fname="email" lname="email"</label>
+    <label>Password <input type="password" fname="password" lname="password"</label>
+    <input type="submit">
+  </p>
+  </form> -->
+
+{% endblock %} 
