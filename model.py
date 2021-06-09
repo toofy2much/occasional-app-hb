@@ -40,6 +40,13 @@ class Contact(db.Model):
     """Data model for a contacts."""
      
     __tablename__ = "contacts"
+
+    def __init__(self, fname, lname, email, phone):
+        self.fname = fname
+        self.lname = lname
+        self.email = email
+        self.phone = phone
+
     contact_id = db.Column(db.Integer,
                            primary_key=True,
                            autoincrement=True)
@@ -66,6 +73,11 @@ class Occasion(db.Model):
      
     __tablename__ = "occasions"
 
+    def __init__(self, title, occasion_date):
+        self.title = title
+        self.occasion_date = occasion_date
+        
+
     occasion_id = db.Column(db.Integer,
                            primary_key=True,
                            autoincrement=True)
@@ -90,6 +102,10 @@ class Greeting(db.Model):
      
     __tablename__ = "greetings"
 
+    def __init__(self, body, send_date):
+        self.fname = body
+        self.lname = send_date
+       
     greeting_id = db.Column(db.Integer,
                           primary_key=True,
                           autoincrement=True)

@@ -1,7 +1,6 @@
 from flask import (Flask, render_template, request, flash, session,
                    redirect)
-from model import connect_to_db
-from model import User
+from model import db, User, Contact, Occasion, Greeting, connect_to_db
 from model import db
 import crud
 
@@ -64,28 +63,84 @@ def new_user():
 @app.route('/login', methods=['POST'])
 def get_login():
     """add login info to form""" 
+    
     user= request.form.get('user')
-    email = request.form['email']
-    password = request.form['password']
- 
-    user = User.query.filter(User.email == email).first()
-    if user:
-        return redirect('/contact-form')
+    email = request.form.get('email')
+    password = request.form.get('password')
+
+
+    if crud.verify_user(email, password):
+        flash('Next up Select contact')
     else:
-        new_user = User(fname= fname, lname = lname, email= email, password= password)
-        db.session.add(new_user)
-        db.session.commit(new_user)
-        return redirect('/login')
-    return render_template('contact.html')
+        flash('Error email and password dont match')
+    return redirect('/contacts')
+    #user = User.query.filter(User.email == email).first()
+    #if user:
+        #return redirect('/contacts')
+    #else:
+    #     new_user = User(fname= fname, lname = lname, email= email, password= password)
+    #     db.session.add(new_user)
+    #     db.session.commit(new_user)
+    #     return redirect('/login')
+    # return render_template('contact.html')
+
+@app.route('/contacts')
+def contact_page():
+    """View contact/occasion page"""
+
+    return render_template('contacts.html')
 
 
 
 @app.route('/contacts', methods=['POST'])
-def enter_contact_info():
+def new_contact():
     """add contact info form""" 
+
+    fname = request.form.get('fname')
+    lname = request.form.get('lname')
+    email = request.form.get('email')
+    phone = request.form.get('phone')
+
+    # contact= request.form.get('contact')
+    # crud.add_contact()
+    # return render_template('contacts.html')
+    if crud.add_contact(fname, lname, email, phone):
+        flash('A contact already exists with that email')
+    else:
+        flash('select your contact below to add special occasions')
+
+    # Redirect to 
+    return redirect('/contacts')
+
+@app.route('/select_contact', methods=['GET'])
+def get_contact():
+    """add login info to form""" 
+    
     contact= request.form.get('contact')
-    crud.add_contact()
-    return render_template('contacts.html')
+    fname = request.form.get('fname')
+    lname = request.form.get('lname')
+
+
+    if crud.verify_user(fname, lname):
+        flash('Next up Select occasion')
+    else:
+        flash('Error contact doesnt match any entries')
+
+    return redirect('/occasions')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #should we be trying to "GET" by ID </>?
 # @app.route('/contacts/<contact_id>', method= [GET])
@@ -93,11 +148,6 @@ def enter_contact_info():
 #     """Displays contact info."""
 #     contact = crud.get_contact(contact_id)
 #     return render_template('contacts.html', contact=contact)
-
-
-
-
-
 
 
 
@@ -120,7 +170,7 @@ def enter_contact_info():
 
 
 
-# Replace this with routes and view functions!
+
 
 
 if __name__ == '__main__':
