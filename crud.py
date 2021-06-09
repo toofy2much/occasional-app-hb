@@ -15,18 +15,18 @@ def add_user(fname, lname, email, phone, password):
         db.session.add(new_user)
         db.session.commit()
 
-    return True        #redirect('/registration-form')
+        return True        #redirect('/registration-form')
 
 
 def verify_user(email, password):
     """takes user email to verify password"""
     
     user = User.query.filter(User.email == email).first()
-    if user:
-        return password == user.password
+    if user and password == user.password:
+        return user
             
     else:
-        return False
+        return None
 
 # def add_contact():
 #     email = request.form['email']
@@ -55,18 +55,18 @@ def add_contact(fname, lname, email, phone):
         db.session.add(new_contact)
         db.session.commit()
 
-    return True        
+        return True        
 
 
 def verify_contact(fname, lname):
     """takes contacts first/name to verify password"""
     
     contact = Contact.query.filter(Contact.fname == fname).first()
-    if contact:
-        return lname == contact.lname
+    if contact and lname == contact.lname:
+        return contact
             
     else:
-        return False
+        return none
 
 
 

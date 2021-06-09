@@ -1,7 +1,7 @@
 from flask import (Flask, render_template, request, flash, session,
                    redirect)
 from model import db, User, Contact, Occasion, Greeting, connect_to_db
-from model import db
+
 import crud
 
 from jinja2 import StrictUndefined
@@ -67,13 +67,21 @@ def get_login():
     user= request.form.get('user')
     email = request.form.get('email')
     password = request.form.get('password')
+    error = 'user does not exist'
 
+    user = crud.verify_user(email, password)
 
-    if crud.verify_user(email, password):
+    if user:
+        session['user_id'] = user.user_id
         flash('Next up Select contact')
+        
+        return redirect('/contacts')
+
     else:
         flash('Error email and password dont match')
-    return redirect('/contacts')
+    
+        return render_template('homepage.html', error=error)
+
     #user = User.query.filter(User.email == email).first()
     #if user:
         #return redirect('/contacts')
@@ -112,7 +120,7 @@ def new_contact():
     # Redirect to 
     return redirect('/contacts')
 
-@app.route('/select_contact', methods=['GET'])
+@app.route('/select_contact', methods=['POST'])
 def get_contact():
     """add login info to form""" 
     
