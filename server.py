@@ -92,12 +92,6 @@ def get_login():
     #     return redirect('/login')
     # return render_template('contact.html')
 
-@app.route('/contacts')
-def contact_page():
-    """View contact/occasion page"""
-
-    return render_template('contacts.html')
-
 
 
 @app.route('/contacts', methods=['POST'])
@@ -120,22 +114,59 @@ def new_contact():
     # Redirect to 
     return redirect('/contacts')
 
+
+@app.route('/contacts',) #endpoint returning table in html of saved contacts
+def contact_table():
+
+    
+    contacts = Contact.query.all()
+
+    return render_template('contacts.html', contacts=contacts)
+
+
+
 @app.route('/select_contact', methods=['POST'])
 def get_contact():
-    """add login info to form""" 
+    """add contact info to form""" 
     
     contact= request.form.get('contact')
     fname = request.form.get('fname')
     lname = request.form.get('lname')
+    error = 'user does not exist'
 
+    contact = crud.verify_contact(fname, lname)
 
-    if crud.verify_user(fname, lname):
-        flash('Next up Select occasion')
+    if contact:
+        session['contact_id'] = contact.contact_id
+        flash('Next up Select contact')
+        
+        return redirect('/occasions')
+    
+
     else:
         flash('Error contact doesnt match any entries')
+    
+        return render_template('contact.html', error=error)
 
-    return redirect('/occasions')
+    
+    
 
+
+    #if crud.verify_user(fname, lname):
+    #     flash('Next up Select occasion')
+    # else:
+    #     flash('Error contact doesnt match any entries')
+
+    # return redirect('/occasions')
+
+ 
+
+    
+    if user:
+        session['user_id'] = user.user_id
+        flash('Next up Select contact')
+        
+        return redirect('/contacts')
 
 
 

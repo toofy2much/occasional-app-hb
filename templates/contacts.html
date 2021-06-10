@@ -11,23 +11,47 @@
   <h1>Occasional Occasion Reminder App</h1>
 
   <h2>Add A New Contact!</h2>
-  <p>
-  <form action="/contacts" method="POST">
-    <label>First name of recipient? <input type="text" name="fname"></label> 
-    <label>Last name? <input type="text" name="lname"></label>
-    <label>Email <input type="text" name="email"></label>
-    <label>Phone <input type="text" name="phone"></label>
-    <input type="submit">
-    </p>
-  </form>
+   <div>
+     <form action="/contacts" method="POST">
+      <label>First name of recipient? <input type="text" name="fname"></label> 
+      <label>Last name? <input type="text" name="lname"></label>
+      <label>Email <input type="text" name="email"></label>
+      <label>Phone <input type="text" name="phone"></label>
+      <input type="submit">
+     </form>
+  </div>
 
-  <h3>Select Contact</h3>
-  <p>
-  <form action="/contacts" method="GET">
+  <h3>"Existing Contacts"</h3>
+  <div>
+   <table class="table">
+     <thead>
+       <tr> 
+        <th scope= "col">#</th>
+        <th scope= "col">First Name</th>
+        <th scope= "col">Last Name</th>
+        <th scope= "col">Phone Number</th>
+        <th scope= "col">Email</th>
+      </tr>
+    </thead>
+      {% for contact in contacts %}
+      <tr>
+        <th scope="row">{{contact.contact_id}}</th>
+        <td>{{contact.lname}}</td>
+        <td>{{contact.fname}}</td>
+        <td>{{contact.phone}}</td>
+        <td>{{contact.email}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+
+  <h4>Select Contact</h4>
+  <div>
+  <form action="/select_contact" method="POST">
     <label>Recipient's First Name<input type="text" name=fname></label>
     <label>Last Name<input type="text" name=lname></label>
     <input type="submit">
-    </p>
+  </div>
   </form>
   
   <!-- <h3>Select Greeting</h3>
