@@ -1,0 +1,17 @@
+.table {
+    border-spacing: 0;
+    margin: 1rem;
+    background-color: lightgray;
+}
+
+.table.th:nth-child(even){
+    background-color: lightyellow;
+}
+
+.table.th {
+    text-align: left;
+}
+
+.table.tr {
+    padding: 10px;
+}
