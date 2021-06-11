@@ -34,7 +34,7 @@ def new_user():
     email = request.form.get('email')
     phone = request.form.get('phone')
     password = request.form.get('password')
-    
+    error = 'user already exists'
     # Check if user with given email already exists
 
     #check_user = User.query.filter_by(email=email).first()
@@ -102,7 +102,7 @@ def new_contact():
     lname = request.form.get('lname')
     email = request.form.get('email')
     phone = request.form.get('phone')
-
+    error = 'contact already exists'
     # contact= request.form.get('contact')
     # crud.add_contact()
     # return render_template('contacts.html')
@@ -117,8 +117,8 @@ def new_contact():
 
 @app.route('/contacts',) #endpoint returning table in html of saved contacts
 def contact_table():
+    """dispalys contact data from db in table format"""
 
-    
     contacts = Contact.query.all()
 
     return render_template('contacts.html', contacts=contacts)
@@ -127,12 +127,12 @@ def contact_table():
 
 @app.route('/select_contact', methods=['POST'])
 def get_contact():
-    """add contact info to form""" 
+    """select contact into a form""" 
     
     contact= request.form.get('contact')
     fname = request.form.get('fname')
     lname = request.form.get('lname')
-    error = 'user does not exist'
+    error = 'contact does not exist'
 
     contact = crud.verify_contact(fname, lname)
 
@@ -162,12 +162,7 @@ def get_contact():
  
 
     
-    if user:
-        session['user_id'] = user.user_id
-        flash('Next up Select contact')
-        
-        return redirect('/contacts')
-
+    
 
 
 
