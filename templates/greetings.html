@@ -1,0 +1,58 @@
+<!doctype html>
+
+{% extends 'base.html' %} 
+
+
+ <!-- adds occasions and greeting to form that submits its data to POST/occasions -->
+   
+{% block title %}Reminder Occasion/ Greeting Page{% endblock %}
+
+{% block body %}
+  <h1>Occasional Occasion Reminder App</h1>
+  
+  <h2>Create Your Custom Greeting</h2>
+   <div>
+     <form action="/occasions/{{contact.contact_id}}" method="POST">
+      <label>What is the special Occasion? <input type="text" name="title"></label> 
+      <label>When is this Date? <input type="text" name="occasion_date"></label>
+      <label>Create Your Custom Message<input type="text" name="body"></label>
+      <label>when would you like to send your greeting?<input type="text" name="send_date"></label>
+   </div> 
+      <h3>"Make Sure This Message is Unique"</h3>
+        <div>
+        <table class="table">
+            <thead>
+            <tr> 
+                <th scope= "col">#</th>
+                <th scope= "col">Recipient</th>
+                <th scope= "col">Type of Greeting</th>
+                <th scope= "col">Greeting</th>
+                <th scope= "col">Event Date</th>
+                <th scope= "col">Send Date</th>
+            </tr>
+            </thead>
+            {% for greeting in greetings %}
+            <tr>
+                <th scope="row">{{greeting.greeting_id}}</th>
+                <td>{{contact.fname}}</td>
+                <td>{{greeting.body}}</td> 
+                <td>{{greeting.occasion.title}}</td> 
+                <td>{{greeting.occasion.occasion_date}}</td> 
+                <td>{{greeting.send_date}}</td>
+            </tr>
+            {% endfor %}
+            <input type="submit">
+            </table>
+        </form>
+   </div>
+
+  
+  <h3>Select Greeting</h3>
+  <p>
+  <form action="/greeting" method="POST">
+    <label>Email <input type="text" fname="email" lname="email"</label>
+    <label>Password <input type="password" fname="password" lname="password"</label>
+    <input type="submit">
+  </p>
+  </form> 
+{% endblock %} 

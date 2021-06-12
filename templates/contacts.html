@@ -33,11 +33,11 @@
         <th scope= "col">Email</th>
       </tr>
     </thead>
-      {% for contact in contacts %}
+      {% for contact in contact %}
       <tr>
         <th scope="row">{{contact.contact_id}}</th>
         <td>{{contact.lname}}</td>
-        <td>{{contact.fname}}</td>
+        <td>{{contact.fname}}</td> 
         <td>{{contact.phone}}</td>
         <td>{{contact.email}}</td>
       </tr>
