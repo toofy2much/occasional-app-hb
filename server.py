@@ -97,31 +97,35 @@ def get_login():
 @app.route('/contacts', methods=['POST'])
 def new_contact():
     """add contact info form""" 
+    if 'user_id' in session:
+        user_id = session['user_id']
+        fname = request.form.get('fname')
+        lname = request.form.get('lname')
+        email = request.form.get('email')
+        phone = request.form.get('phone')
+        error = 'contact already exists'
+        # contact= request.form.get('contact')
+        # crud.add_contact()
+        # return render_template('contacts.html')
+        if not crud.add_contact(fname, lname, email, phone, user_id):
+            flash('A contact already exists with that email')
+        else:
+            flash('select your contact below to add special occasions')
 
-    fname = request.form.get('fname')
-    lname = request.form.get('lname')
-    email = request.form.get('email')
-    phone = request.form.get('phone')
-    error = 'contact already exists'
-    # contact= request.form.get('contact')
-    # crud.add_contact()
-    # return render_template('contacts.html')
-    if crud.add_contact(fname, lname, email, phone):
-        flash('A contact already exists with that email')
+        # Redirect to 
+        return redirect('/contacts')
     else:
-        flash('select your contact below to add special occasions')
-
-    # Redirect to 
-    return redirect('/contacts')
+        flash('Login required')
+        return redirect('/')
 
 
-@app.route('/contacts',) #endpoint returning table in html of saved contacts
+@app.route('/contacts') #endpoint returning table in html of saved contacts
 def contact_table():
-    """dispalys contact data from db in table format"""
+    """displays contact data from db in table format"""
 
-    contacts = Contact.query.all()
+    contact = Contact.query.all()
 
-    return render_template('contacts.html', contacts=contacts)
+    return render_template('contacts.html', contact=contact)
 
 
 
@@ -135,12 +139,12 @@ def get_contact():
     error = 'contact does not exist'
 
     contact = crud.verify_contact(fname, lname)
-
+    print(contact)
     if contact:
         session['contact_id'] = contact.contact_id
         flash('Next up Select contact')
         
-        return redirect('/occasions')
+        return redirect(f'/occasions/{contact.contact_id}')
     
 
     else:
@@ -148,8 +152,64 @@ def get_contact():
     
         return render_template('contact.html', error=error)
 
+
+@app.route('/occasions/<contact_id>')
+def get_occasions(contact_id):
+    if 'user_id' in session:
+        user_id = session['user_id']
+        contact = Contact.query.get(contact_id)
+        occasions = contact.occasions
+        greetings = []
+        for occ in occasions:
+            greeting = Greeting.query.filter_by(user_id=user_id, occasion_id=occ.occasion_id).first()
+            greetings.append(greeting)
+        print(greetings)
+        return render_template('greetings.html', contact=contact, greetings=greetings)
+    else:
+        return redirect('/')
+
+
     
-    
+@app.route('/occasions/<contact_id>', methods=['POST'])
+def add_occasion(contact_id):
+    """select contact into a form""" 
+    if 'user_id' in session:
+        user_id = session['user_id']
+        occasion = request.form.get('occasion')
+        title = request.form.get('title')
+        occasion_date = request.form.get('occasion_date')
+        body = request.form.get("body")
+        send_date = request.form.get("send_date")
+
+        contact = Contact.query.get(contact_id)
+
+        new_occasion = crud.add_occasion(contact.contact_id, title, occasion_date)
+        new_greeting = crud.add_greeting(body, new_occasion.occasion_id, send_date, user_id)
+        return redirect(f'/occasions/{contact.contact_id}')
+    else:
+        return redirect('/')
+    # def add_greeting():
+    #     if not greeting:
+    #         session['occasion_id'] = ocasion.occasion_id
+    #         session['greeting_id'] = greeting.greeting_id
+    #         flash('hi')
+            
+    #         return redirect('/occasion')
+
+    #     else:
+    #         flash('Error can not compute')
+        
+    #         return render_template('greetings.html', error=error)
+
+
+        #endpoint returning table in html of greetings
+        # def greetings_table():
+        #     """dispalys greetings sent from db in table format"""
+
+        #     greeting = Greeting.query.all()
+
+        #     return render_template('greetings.html', greeting=greeting)
+
 
 
     #if crud.verify_user(fname, lname):
