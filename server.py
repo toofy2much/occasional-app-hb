@@ -1,5 +1,6 @@
 from flask import (Flask, render_template, request, flash, session,
-                   redirect)
+                   url_for,redirect)
+from flask_login import logout_user
 from model import db, User, Contact, Occasion, Greeting, connect_to_db
 
 import crud
@@ -9,6 +10,9 @@ from jinja2 import StrictUndefined
 app = Flask(__name__)
 app.secret_key = "secret"
 app.jinja_env.undefined = StrictUndefined
+
+# Login_manager = LoginManager()
+# login_manager.init_app(app)
 
 
 # Access the request object
@@ -59,6 +63,7 @@ def new_user():
 
     # Redirect to homepage
     return redirect('/')
+
 
 @app.route('/login', methods=['POST'])
 def get_login():
@@ -168,7 +173,6 @@ def get_occasions(contact_id):
     else:
         return redirect('/')
 
-
     
 @app.route('/occasions/<contact_id>', methods=['POST'])
 def add_occasion(contact_id):
@@ -188,6 +192,14 @@ def add_occasion(contact_id):
         return redirect(f'/occasions/{contact.contact_id}')
     else:
         return redirect('/')
+
+
+@app.route('/logout', methods=['POST'])
+def logout():
+    """return to homepage"""
+   
+    return redirect('/')
+
     # def add_greeting():
     #     if not greeting:
     #         session['occasion_id'] = ocasion.occasion_id
