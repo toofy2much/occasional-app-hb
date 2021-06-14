@@ -1,7 +1,6 @@
 from flask import (Flask, render_template, request, flash, session,
                    url_for,redirect)
-from flask_login import logout_user
-from flask_mail import Mail
+from flask_mail import Mail, Message
 from model import db, User, Contact, Occasion, Greeting, connect_to_db
 
 import crud
@@ -11,25 +10,51 @@ from jinja2 import StrictUndefined
 app = Flask(__name__)
 app.secret_key = "secret"
 app.jinja_env.undefined = StrictUndefined
+
+
 app.config['DEBUG'] = True
 app.config['TESTING'] = False
-app.config['MAIL_SERVER'] = 'localhost'
-app.config['MAIL_PORT'] = 25
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
 app.config['MAIL_USE_TLS'] = False
-app.config['MAIL_SSL'] = False
-app.config['MAIL_DEBUG'] =  True  
-app.config['MAIL_USERNAME'] = None
-app.config['MAIL_PASSWORD'] = None
-app.config['MAIL_DEFAULT_SENDER'] = tuesday.kay@gmail.com
+app.config['MAIL_USE_SSL'] = True
+#app.config['MAIL_DEBUG'] =  True  
+app.config['MAIL_USERNAME'] = 'occasionreminder215@gmail.com'
+app.config['MAIL_PASSWORD'] = 'DingDong'
+app.config['MAIL_DEFAULT_SENDER'] = 'occasionreminder215@gmail.com'
 app.config['MAIL_MAX_EMAILS'] = 5
-app.config['MAIL_SUPPRESS_SEND'] = False
-app.config['MAIL_ASCII_ATTACHMENTS'] = False
+#app.config['MAIL_SUPPRESS_SEND'] = False
+app.config['MAIL_ASCII_ATTACHMENTS'] = False 
+
+mail = Mail(app)
+
+@app.route('/send')
+def test_mail():
+    msg = Message('hi test email', recipients=['occasionreminder215@gmail.com'])
+    #msg.add_reciepient('')
+    msg.body= 'test email'
+    # contact.greeting.body
+    mail.send(msg)
+    
+
+    return 'msg has been sent'
+
+# @app.route('/')    
+# def send_all():   #opening connection with built in method
+#     with mail.connect() as conn:
+#         for contact in contacts:
+#             msg = Greeting[{contact_id : 'contact', contact.email : 'email', body :'body', user_id : 'user_id'}
+            
+#             #title:
+#             #contact:
+
+
+#             conn.send(msg)
+
+#     return 'msg has been sent'
 
 
 
-
-# Login_manager = LoginManager()
-# login_manager.init_app(app)
 
 
 # Access the request object
