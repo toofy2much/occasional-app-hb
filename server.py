@@ -219,17 +219,21 @@ def add_occasion(contact_id):
 
 #     return 'msg has been sent'
 
-@app.route('/bulk',)    
+@app.route('/bulk')    
 def send_all():   #opening connection with built in method
-    
-    contacts= Contact[{contact_id : 'contact_id', contact.email : 'email', greeting.body :'body', user_id : 'user_id'}]
+    print('*******in send_all_route*****')
+    # contacts= Contact[{contact_id : 'contact_id', contact.email : 'email', greeting.body :'body', user_id : 'user_id'}]
+    greetings = Greeting.query.filter_by(user_id=session.get('user_id')).all()
+
+    print("*"*20, f"\ngreetings = {greetings}", "*"*20)
     with mail.connect() as conn:
-        for contact in contacts:
-           
+        for greeting in greetings:
+            occ = greeting.occasion
+            contact = occ.contact
             subject = "hello, %s user.name"
-            mdg = Message(recipients=[contacts['email']],
-                          body=message,
-                          suibject=subject)
+            msg = Message(recipients=[contact.email],
+                          body='message body',
+                          subject='subject line')
             
     
             conn.send(msg)
