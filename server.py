@@ -1,6 +1,6 @@
 from flask import (Flask, render_template, request, flash, session,
                    url_for,redirect)
-from flask_mail import Mail, Message
+from flask_mail import Mail, Message 
 from model import db, User, Contact, Occasion, Greeting, connect_to_db
 
 import crud
@@ -27,34 +27,6 @@ app.config['MAIL_MAX_EMAILS'] = 5
 app.config['MAIL_ASCII_ATTACHMENTS'] = False 
 
 mail = Mail(app)
-
-@app.route('/send')
-def test_mail():
-    msg = Message('hi test email', recipients=['occasionreminder215@gmail.com'])
-    #msg.add_reciepient('')
-    msg.body= 'test email'
-    # contact.greeting.body
-    mail.send(msg)
-    
-
-    return 'msg has been sent'
-
-# @app.route('/')    
-# def send_all():   #opening connection with built in method
-#     with mail.connect() as conn:
-#         for contact in contacts:
-#             msg = Greeting[{contact_id : 'contact', contact.email : 'email', body :'body', user_id : 'user_id'}
-            
-#             #title:
-#             #contact:
-
-
-#             conn.send(msg)
-
-#     return 'msg has been sent'
-
-
-
 
 
 # Access the request object
@@ -234,6 +206,53 @@ def add_occasion(contact_id):
         return redirect(f'/occasions/{contact.contact_id}')
     else:
         return redirect('/')
+
+
+# @app.route('/send')
+# def test_mail():
+#     msg = Message('hi test email', recipients=['occasionreminder215@gmail.com'])
+#     #msg.add_reciepient('')
+#     msg.body= 'test email'
+#     # contact.greeting.body
+#     mail.send(msg)
+    
+
+#     return 'msg has been sent'
+
+@app.route('/bulk',)    
+def send_all():   #opening connection with built in method
+    
+    contacts= Contact[{contact_id : 'contact_id', contact.email : 'email', greeting.body :'body', user_id : 'user_id'}]
+    with mail.connect() as conn:
+        for contact in contacts:
+           
+            subject = "hello, %s user.name"
+            mdg = Message(recipients=[contacts['email']],
+                          body=message,
+                          suibject=subject)
+            
+    
+            conn.send(msg)
+
+    return 'msg has been sent'
+
+# with mail.record_messages() as outbox:
+
+#     mail.send_message(subject='testing',
+#                       body='test',
+#                       recipients=emails)
+
+#     assert len(outbox) == 1
+#     assert outbox[0].subject == "testing"
+
+# def log_message(message, app):
+#     app.logger.debug(message.subject)
+
+# email_dispatched.connect(log_message)
+
+
+
+
 
 
 @app.route('/logout', methods=['POST'])
