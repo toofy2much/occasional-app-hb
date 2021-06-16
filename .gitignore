@@ -1,3 +1,4 @@
 # created by virtualenv automatically
 * env
 __pycache__
+*.sh

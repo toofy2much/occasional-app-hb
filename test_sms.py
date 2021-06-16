@@ -5,14 +5,14 @@ from twilio.twiml.messaging_response import Message #, MessagingResponse
 
 #set the environment variables
 #send and sms
-account = "AC67a5e56705ad4808f99cacb1b1751502"
-token = "c1e4e168fe9fcdd9909d4385ea0836a0"
+account = "AC67a5e56705ad4808f99cacb1b1751502" 
+token = "9da9d19a859b43fa4c1e8d3fc801b01a"
 # account_sid = os.environ['TWILIO_ACCOUNT_SID']
 # auth_token = os.environ['TWILIO_AUTH_TOKEN']
 #client = Client(account_sid, token_token)
 client = Client(account, token)
-client.region = 'us1' #edge 
-client.edge = 'philadelphia'#region 
+# client.region = 'us1' #edge 
+# client.edge = 'philadelphia'#region 
 #logging.basicConfig(filename='./log.txt')
 #client.http_client.logger.setLevel(logging.INFO)
 # hostname should = api.philadelphia.usa1.twilio.com
@@ -20,7 +20,7 @@ client.edge = 'philadelphia'#region
 message = client.messages.create(to="+12672581229", from_="+12156085643",
                                  body="Hello World!")
 
-print(message.sid)                               
+print(message)                               
 # response = MessagingResponse()
 # response.message('disco')
 

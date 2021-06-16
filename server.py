@@ -2,13 +2,15 @@ from flask import (Flask, render_template, request, flash, session,
                    url_for,redirect)
 from flask_mail import Mail, Message 
 from model import db, User, Contact, Occasion, Greeting, connect_to_db
-
+import os
 import crud
 
 from jinja2 import StrictUndefined
 
 app = Flask(__name__)
-app.secret_key = "secret"
+os.system("source secret.sh")
+
+app.secret_key =  os.environ["SECRET"]
 app.jinja_env.undefined = StrictUndefined
 
 
