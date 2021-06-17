@@ -5,12 +5,12 @@ from twilio.twiml.messaging_response import Message #, MessagingResponse
 
 #set the environment variables
 #send and sms
-account = "AC67a5e56705ad4808f99cacb1b1751502" 
-token = "9da9d19a859b43fa4c1e8d3fc801b01a"
-# account_sid = os.environ['TWILIO_ACCOUNT_SID']
-# auth_token = os.environ['TWILIO_AUTH_TOKEN']
-#client = Client(account_sid, token_token)
-client = Client(account, token)
+
+
+account_sid = os.environ['TWILIO_ACCOUNT_SID']
+auth_token = os.environ['TWILIO_AUTH_TOKEN']
+client = Client(account_sid, token_token)
+
 # client.region = 'us1' #edge 
 # client.edge = 'philadelphia'#region 
 #logging.basicConfig(filename='./log.txt')
