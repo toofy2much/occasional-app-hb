@@ -65,7 +65,7 @@ class Occasion(db.Model):
                            primary_key=True,
                            autoincrement=True)
     title = db.Column(db.String, nullable=False)
-    occasion_date = db.Column(db.String, nullable=False)
+    occasion_date = db.Column(db.DateTime, nullable=False)
     contact_id = db.Column(db.Integer, db.ForeignKey("contacts.contact_id"))
     
     #should there a min and max digits for date?*
@@ -90,7 +90,7 @@ class Greeting(db.Model):
                           autoincrement=True)
     body = db.Column(db.Text, nullable=False)                         
     occasion_id = db.Column(db.Integer, db.ForeignKey("occasions.occasion_id"))
-    send_date = db.Column(db.String)
+    send_date = db.Column(db.DateTime,nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
 
                                                          
