@@ -1,5 +1,5 @@
-import os
-
+import os, sys 
+print(os.environ)
 from flask import (Flask, render_template, request, flash, session,
                    url_for,redirect, jsonify, abort)
 from flask_mail import Mail, Message 
@@ -21,11 +21,12 @@ os.system('source secret.sh')
 app.secret_key =  os.environ['SECRET']
 app.jinja_env.undefined = StrictUndefined
 
-#set the environment variables
+#set the environment variables 
 #send and sms
 
 account_sid = os.environ['TWILIO_ACCOUNT_SID']
 auth_token = os.environ['TWILIO_AUTH_TOKEN']
+
 client = Client(account_sid, auth_token)
 
 
@@ -273,16 +274,23 @@ def send_all():   #opening connection with built in method
 # email_dispatched.connect(log_message)
 #print(***20)
 @app.route('/sms_bulk/')
+
+x = datetime.datetime.now()
+
 def send_sms():
-    #get o.title, c.fname, c.lname, c.phone,
-    #g.body, g.send_date, u.fname, 
-    
+    session.query(Greeting).join(Contact,Occasion,User).filter
+            (Greeting.send_date == x).all(o.title, c.fname, c.lname, 
+            c.phone,
+            g.body, g.send_date, u.fname, u.name, u.phone)
+
 #greetings = Greeting.query.filter_by(user_id=session.get('user_id')).all()
 
     message = client.messages.create(to="contact.phone", from_="+12156085643",
                                  body="greeting.body")
 
-    print(message)  
+    print(message.sid)  
+
+# use a second function or this reminder api
 
 # @app.route('/api/reminders', methods=['GET'])
 # def get_reminders():

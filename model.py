@@ -2,6 +2,7 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
 db = SQLAlchemy()
+
 #app.secret_key = "SECRET"
 
 class User(db.Model):
