@@ -1,5 +1,5 @@
 from model import db, User, Contact, Occasion, Greeting, connect_to_db
-
+from datetime import datetime
 
 def add_user(fname, lname, email, phone, password):
     """checks user data with existing users"""  
@@ -94,6 +94,12 @@ def verify_greeting(greeting_id, send_date):
             
     else:
         return none
+
+def get_users_current_greetings(user_id):
+    current_date= datetime.now()
+    user_greetings= User.query.get(user_id).greetings
+
+    return user_greetings
 
 
 
