@@ -164,9 +164,9 @@ def new_contact():
 def contact_table():
     """displays contact data from db in table format"""
 
-    contact = Contact.query.all()
+    contacts = Contact.query.all()
 
-    return render_template('contacts.html', contact=contact)
+    return render_template('contacts.html', contacts=contacts)
 
 
 
@@ -191,7 +191,7 @@ def get_contact():
     else:
         flash('Error contact doesnt match any entries')
     
-        return render_template('contact.html', error=error)
+        return render_template('contacts.html', error=error)
 
 
 @app.route('/occasions/<contact_id>')
@@ -203,7 +203,8 @@ def get_occasions(contact_id):
         greetings = []
         for occ in occasions:
             greeting = Greeting.query.filter_by(user_id=user_id, occasion_id=occ.occasion_id).first()
-            greetings.append(greeting)
+            if greeting:
+                greetings.append(greeting)
         print(greetings)
         return render_template('greetings.html', contact=contact, greetings=greetings)
     else:
@@ -233,7 +234,7 @@ def add_occasion(contact_id):
 # @app.route('/send')
 # def test_mail():
 #     msg = Message('hi test email', recipients=['occasionreminder215@gmail.com'])
-#     #msg.add_reciepient('')
+#     #msg.add_recipient('')
 #     msg.body= 'test email'
 #     # contact.greeting.body
 #     mail.send(msg)
@@ -246,18 +247,21 @@ def send_all():   #opening connection with built in method
     print('*******in send_all_route*****')
     # contacts= Contact[{contact_id : 'contact_id', contact.email : 'email', greeting.body :'body', user_id : 'user_id'}]
     greetings = Greeting.query.filter_by(user_id=session.get('user_id')).all()
-
-    print("*"*20, f"\ngreetings = {greetings}", "*"*20)
+    #x = datetime.now()
+    #User.query.get(session['user_id']).filter_by(Greeting.send_date == x).all()
+    #print("*"*20, f"\ngreetings = {greetings}", "*"*20)
     with mail.connect() as conn:
         for greeting in greetings:
+            #if greeting:
             occ = greeting.occasion
             contact = occ.contact
-            subject = "hello, %s user.name"
-            msg = Message(recipients=[contact.email],
-                          body='message body',
-                          subject='subject line')
-            
-    
+            subject = "hello, " + contact.fname
+            print(contact.email)
+            msg = Message(recipients= [contact.email],
+                          body= greeting.body,
+                          subject= subject)
+            print("************")
+            print(msg)
             conn.send(msg)
 
     return 'msg has been sent'
@@ -279,10 +283,8 @@ def send_all():   #opening connection with built in method
 
 
 @app.route('/sms_bulk/')
-
-  
-
 def send_sms():
+    """sending sms text by date to user contacts based on current date"""
     x = datetime.now()
     User.query.get(session['user_id']).filter(Greeting.send_date == x).all()
     
