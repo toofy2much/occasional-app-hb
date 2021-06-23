@@ -1,5 +1,6 @@
 from model import db, User, Contact, Occasion, Greeting, connect_to_db
-from datetime import datetime
+import datetime
+
 
 def add_user(fname, lname, email, phone, password):
     """checks user data with existing users"""  
@@ -95,16 +96,26 @@ def verify_greeting(greeting_id, send_date):
         return greeting
             
     else:
-        return none
+        return None
         
 
 def get_users_current_greetings(user_id):
-    current_date= datetime.now()
-    user_greetings= User.query.get(user_id).greetings 
+    """returns messages if send_date is current_date"""
+    now = datetime.datetime.now()
+    current_date= datetime.date(now.year, now.month, now.day)
+    user_greetings= Greeting.query.filter(Greeting.send_date == current_date, Greeting.user_id == user_id, Greeting.sent == False).all()
+    print(current_date)
 
-    
     return user_greetings
 
+
+
+def mark_sent_greetings(greetings):
+    for greeting in greetings:
+        greeting.sent = True
+
+    db.session.commit()
+ 
 
 
 if __name__ == '__main__': 

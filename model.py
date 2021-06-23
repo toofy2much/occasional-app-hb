@@ -93,6 +93,7 @@ class Greeting(db.Model):
     occasion_id = db.Column(db.Integer, db.ForeignKey("occasions.occasion_id"))
     send_date = db.Column(db.DateTime,nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
+    sent = db.Column(db.Boolean, default= False)
 
                                                          
 

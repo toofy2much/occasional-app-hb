@@ -1,5 +1,5 @@
 import os, sys 
-import datetime 
+
 
 print(os.environ)
 
@@ -191,8 +191,7 @@ def get_contact():
     else:
         flash('Error contact doesnt match any entries')
     
-        return render_template('contacts.html', error=error)
-
+        return redirect("/contacts")
 
 @app.route('/occasions/<contact_id>')
 def get_occasions(contact_id):
@@ -246,12 +245,17 @@ def add_occasion(contact_id):
 def send_all():   #opening connection with built in method
     print('*******in send_all_route*****')
     # contacts= Contact[{contact_id : 'contact_id', contact.email : 'email', greeting.body :'body', user_id : 'user_id'}]
-    greetings = Greeting.query.filter_by(user_id=session.get('user_id')).all()
-    #x = datetime.now()
-    #User.query.get(session['user_id']).filter_by(Greeting.send_date == x).all()
+    user_id = session.get('user_id')
+    greetings = crud.get_users_current_greetings(user_id)
+    crud.mark_sent_greetings(greetings)
+    
+
+    # crud function take all user greeting data and compare send_date to current date 
+   
     #print("*"*20, f"\ngreetings = {greetings}", "*"*20)
     with mail.connect() as conn:
         for greeting in greetings:
+    
             
             occ = greeting.occasion
             contact = occ.contact
@@ -286,18 +290,18 @@ def send_all():   #opening connection with built in method
 @app.route('/sms_bulk/')
 def send_sms():
     """sending sms text by date to user contacts based on current date"""
-    x = datetime.now()
-    greetings = Greeting.query.filter_by(user_id=session.get('user_id')).all()
+   
+    user_id = session.get('user_id')
+    greetings = crud.get_users_current_greetings(user_id)
     
+
     
     print("*********stopping")
-    for greeting in greetings:
-        if Greeting.send_date == x:   
+    
             #occ = greeting.occasion
             #contact = occ.contact
-           # to = "+1" + contact.phone
-           print(greetings)
-            
+            # to = "+1" + contact.phone
+           
 
     #User.query.get(session['user_id']).filter(Greeting.send_date== x).all()
                 #(user_id=session.get('user_id'))
@@ -305,11 +309,14 @@ def send_sms():
     #crud.get_users_current_greetings()
     
     #contact_phone=["+1" (contact.phone)]
-      
-        message = client.messages.create(to="+12672581229", from_="+12156085643",
-                                    body = "hello," + greeting.body)
+    for greeting in greetings:  
+        phone = greeting.occasion.contact.phone
+        name = (greeting.occasion.contact.fname +" ")
+        message = client.messages.create(to="+1"+ phone, from_="+12156085643",
+                                    body = "hello, " + name + greeting.body)
 
-        print(message.sid) 
+        
+    print(message.sid) 
 
     return 'msg has been sent' 
 
