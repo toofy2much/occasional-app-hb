@@ -1,0 +1,5 @@
+secrets.sh
+env
+__pycache__
+.vscode
+envenv

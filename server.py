@@ -83,18 +83,7 @@ def new_user():
         flash('Created a user! Now you can log in.')
     else:
         # If not, create new user and add to database
-        
-        # user = User(
-        #     fname=fname,
-        #     lname=lname,
-        #     email=email,
-        #     phone=phone,
-        #     password=password
-        # )
-        # db.session.add(user)
-        # db.session.commit()
-        
-        
+       
         flash("You've already registered, please log in!")
 
     # Redirect to homepage
@@ -122,17 +111,6 @@ def get_login():
         flash('Error email and password dont match')
     
         return render_template('homepage.html', error=error)
-
-    #user = User.query.filter(User.email == email).first()
-    #if user:
-        #return redirect('/contacts')
-    #else:
-    #     new_user = User(fname= fname, lname = lname, email= email, password= password)
-    #     db.session.add(new_user)
-    #     db.session.commit(new_user)
-    #     return redirect('/login')
-    # return render_template('contact.html')
-
 
 
 @app.route('/contacts', methods=['POST'])
@@ -270,22 +248,7 @@ def send_all():   #opening connection with built in method
 
     return 'msg has been sent'
 
-# with mail.record_messages() as outbox:
 
-#     mail.send_message(subject='testing',
-#                       body='test',
-#                       recipients=emails)
-
-#     assert len(outbox) == 1
-#     assert outbox[0].subject == "testing"
-
-# def log_message(message, app):
-#     app.logger.debug(message.subject)
-
-# email_dispatched.connect(log_message)
-#print(***20)
-
-#from twilio.twiml.messaging_response import Message #, MessagingResponse
 
 @app.route('/sms_bulk/')
 def send_sms():
@@ -318,7 +281,7 @@ def send_sms():
         
     print(message.sid) 
 
-    return 'msg has been sent' 
+    return 'msg has been sent' # adjust this message to reflect state
 
 # use a second function or this reminder api
 
@@ -373,66 +336,15 @@ def send_sms():
 #     return jsonify({'error': 'Not Found'}), 404
 
 
+# add a button to send todays messages if we cant cronjob
+# would be cool if just sent on the date without logging 
+# or hitting a button if it was hosted 
 
 @app.route('/logout', methods=['POST'])
 def logout():
     """return to homepage"""
    
     return redirect('/')
-
-    # def add_greeting():
-    #     if not greeting:
-    #         session['occasion_id'] = ocasion.occasion_id
-    #         session['greeting_id'] = greeting.greeting_id
-    #         flash('hi')
-            
-    #         return redirect('/occasion')
-
-    #     else:
-    #         flash('Error can not compute')
-        
-    #         return render_template('greetings.html', error=error)
-
-
-        #endpoint returning table in html of greetings
-        # def greetings_table():
-        #     """dispalys greetings sent from db in table format"""
-
-        #     greeting = Greeting.query.all()
-
-        #     return render_template('greetings.html', greeting=greeting)
-
-
-
-    #if crud.verify_user(fname, lname):
-    #     flash('Next up Select occasion')
-    # else:
-    #     flash('Error contact doesnt match any entries')
-
-    # return redirect('/occasions')
-
-    
-
-
-# @app.route('/handle-login', methods=['POST'])
-# def handle_login():
-#     """Log user into application."""
-
-#     user= request.form['email']
-#     password = request.form['password']
-
-#     if email == 'password':   
-#         session['user'] = fname
-#         alert(f'Logged in as {fname}')
-#         return redirect('/   ')
-
-#     else:
-#       
-#         return redirect('/login')
-
-
-
-
 
 
 
