@@ -90,15 +90,19 @@ def verify_greeting(greeting_id, send_date):
     
     greeting = greeting.query.filter(greeting_id == greeting_id).first()
     if greeting and send_date == greeting.send_date:
+
+        
         return greeting
             
     else:
         return none
+        
 
 def get_users_current_greetings(user_id):
     current_date= datetime.now()
-    user_greetings= User.query.get(user_id).greetings
+    user_greetings= User.query.get(user_id).greetings 
 
+    
     return user_greetings
 
 

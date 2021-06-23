@@ -3,13 +3,13 @@ import datetime
 
 print(os.environ)
 
-from flask import (Flask, render_template, request, flash, session,
+from flask import (Flask, render_template, request, escape, flash, session,
                    url_for,redirect, jsonify, abort)
 from flask_mail import Mail, Message 
 from model import db, User, Contact, Occasion, Greeting, connect_to_db
 from datetime import datetime
 from twilio.rest import Client #, logging
-from twilio.twiml.messaging_response import Message #, MessagingResponse
+#from twilio.twiml.messaging_response import Message #, MessagingResponse
 #from twilio.base.exceptions import TwilioRestException
 from reminder_json_helper import read_reminder_json, create_reminder_json, write_reminder_json
 import uuid
@@ -252,7 +252,7 @@ def send_all():   #opening connection with built in method
     #print("*"*20, f"\ngreetings = {greetings}", "*"*20)
     with mail.connect() as conn:
         for greeting in greetings:
-            #if greeting:
+            
             occ = greeting.occasion
             contact = occ.contact
             subject = "hello, " + contact.fname
@@ -281,18 +281,37 @@ def send_all():   #opening connection with built in method
 # email_dispatched.connect(log_message)
 #print(***20)
 
+#from twilio.twiml.messaging_response import Message #, MessagingResponse
 
 @app.route('/sms_bulk/')
 def send_sms():
     """sending sms text by date to user contacts based on current date"""
     x = datetime.now()
-    User.query.get(session['user_id']).filter(Greeting.send_date == x).all()
+    greetings = Greeting.query.filter_by(user_id=session.get('user_id')).all()
     
+    
+    print("*********stopping")
+    for greeting in greetings:
+        if Greeting.send_date == x:   
+            #occ = greeting.occasion
+            #contact = occ.contact
+           # to = "+1" + contact.phone
+           print(greetings)
+            
 
-    message = client.messages.create(to="contact.phone", from_="+12156085643",
-                                 body="greeting.body")
+    #User.query.get(session['user_id']).filter(Greeting.send_date== x).all()
+                #(user_id=session.get('user_id'))
+    #.get(session['user_id'])
+    #crud.get_users_current_greetings()
+    
+    #contact_phone=["+1" (contact.phone)]
+      
+        message = client.messages.create(to="+12672581229", from_="+12156085643",
+                                    body = "hello," + greeting.body)
 
-    print(message.sid)  
+        print(message.sid) 
+
+    return 'msg has been sent' 
 
 # use a second function or this reminder api
 
