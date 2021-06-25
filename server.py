@@ -251,11 +251,11 @@ def send_all():   #opening connection with built in method
             client.messages.create(to="+1"+ phone, from_="+12156085643",
                                         body = "hello, " + name + greeting.body)
 
-            #phone = greeting.occasion.user.phone
-            #name = (greeting.occasion.user.fname + " ")
-            #sent_greeting = 
-            #client.messages.create(to="+1"+ phone, from_="+12156085643",
-                                        #body = "hello, " + name + sent_greeting)
+            phone = greeting.user.phone
+            name = (greeting.user.fname + " ")
+            sent_greeting = ("Occasion reminder was sent to " + greeting.occasion.contact.fname)
+            client.messages.create(to="+1"+ phone, from_="+12156085643",
+                                        body = "hello, " + name + sent_greeting)
 
     return 'msg has been sent'
 
