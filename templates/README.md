@@ -11,3 +11,5 @@ MVP
 -creating functions in CRUD to test model.py
 -seeding the database 
 -
+
+todo 

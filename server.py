@@ -221,20 +221,20 @@ def add_occasion(contact_id):
 
 @app.route('/bulk')    
 def send_all():   #opening connection with built in method
+    """sends users current greetings emails and texts"""
+
     print('*******in send_all_route*****')
-    # contacts= Contact[{contact_id : 'contact_id', contact.email : 'email', greeting.body :'body', user_id : 'user_id'}]
+    
     user_id = session.get('user_id')
     greetings = crud.get_users_current_greetings(user_id)
     crud.mark_sent_greetings(greetings)
     
-
-    # crud function take all user greeting data and compare send_date to current date 
+    #crud function take all user greeting data and compare send_date to current date 
    
-    #print("*"*20, f"\ngreetings = {greetings}", "*"*20)
     with mail.connect() as conn:
         for greeting in greetings:
     
-            
+           
             occ = greeting.occasion
             contact = occ.contact
             subject = "hello, " + contact.fname
@@ -246,21 +246,25 @@ def send_all():   #opening connection with built in method
             print(msg)
             conn.send(msg)
 
+            phone = greeting.occasion.contact.phone
+            name = (greeting.occasion.contact.fname +" ")
+            client.messages.create(to="+1"+ phone, from_="+12156085643",
+                                        body = "hello, " + name + greeting.body)
+
+            #phone = greeting.occasion.user.phone
+            #name = (greeting.occasion.user.fname + " ")
+            #sent_greeting = 
+            #client.messages.create(to="+1"+ phone, from_="+12156085643",
+                                        #body = "hello, " + name + sent_greeting)
+
     return 'msg has been sent'
 
-
-
-@app.route('/sms_bulk/')
-def send_sms():
-    """sending sms text by date to user contacts based on current date"""
+ 
    
-    user_id = session.get('user_id')
-    greetings = crud.get_users_current_greetings(user_id)
-    
 
     
-    print("*********stopping")
-    
+
+print("*********stopping")
             #occ = greeting.occasion
             #contact = occ.contact
             # to = "+1" + contact.phone
@@ -272,16 +276,16 @@ def send_sms():
     #crud.get_users_current_greetings()
     
     #contact_phone=["+1" (contact.phone)]
-    for greeting in greetings:  
-        phone = greeting.occasion.contact.phone
-        name = (greeting.occasion.contact.fname +" ")
-        message = client.messages.create(to="+1"+ phone, from_="+12156085643",
-                                    body = "hello, " + name + greeting.body)
+    #for greeting in greetings:  
+        #phone = greeting.occasion.contact.phone
+        #name = (greeting.occasion.contact.fname +" ")
+        #message = client.messages.create(to="+1"+ phone, from_="+12156085643",
+                                        #body = "hello, " + name + greeting.body)
 
-        
-    print(message.sid) 
+            
+    #print(message.sid) 
 
-    return 'msg has been sent' # adjust this message to reflect state
+    #return 'msg has been sent' # adjust this message to reflect state
 
 # use a second function or this reminder api
 
