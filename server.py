@@ -263,77 +263,17 @@ def send_all():   #opening connection with built in method
                 url = "https://media.giphy.com/media/MuLGuy9Bx6skU/giphy.gif"
             print(contact.email)
             msg = Message(recipients= [contact.email],
-                          body= "hello " + contact.fname + greeting.body + " <img src='" + url + "'>",#greeting.body,
+                          body= "hello " + contact.fname + greeting.body + url,#greeting.body,
                           subject= subject)
             print("************")
             print(msg)
             conn.send(msg)
 
-            # create an instance of the API class
-            # api_instance = giphy_client.DefaultApi()
-            # giphy_api_key = ''   #str | Giphy API Key.
-            # q = 'cheeseburgers' # str | Search query term or phrase.
-            # limit = 25 # int | The maximum number of records to return. (optional) (default to 25)
-            # offset = 0 # int | An optional results offset. Defaults to 0. (optional) (default to 0)
-            # rating = 'g' # str | Filters results by specified rating. (optional)
-            # lang = 'en' # str | Specify default country for regional content; use a 2-letter ISO 639-1 country code. See list of supported languages <a href = \"../language-support\">here</a>. (optional)
-            # fmt = 'json' # str | Used to indicate the expected response format. Default is Json. (optional) (default to json)
-
-            # try: 
-            #     # Search Endpoint
-            #     api_response = api_instance.gifs_search_get(giphy_api_key=giphy_api_key, q, limit=limit, 
-            #                 offset=offset, rating=rating, lang=lang, fmt=fmt)
-            #     pprint(api_response)
-            # except ApiException as e:
-            #     print("Exception when calling DefaultApi->gifs_search_get: %s\n" % e)
-
-
-           
-            # url= "http://api.giphy.com/v1/randomid"
-            # params = urllib.parse.urlencode({
-            #     "api_key": "pSUY8R11xjjFOt5C2qe6550ww2HOu5tb",
-            # #ts: integer (int)(required)
-            # })
-            # with urllib.request.urlopen("".join(url, params)) as response:
-            #     data = json.loads(response.read())
-            # print(json.dumps(data, sort_keys=True, indent=4))
-
-            # url = "http://api.giphy.com/v1/stickers/random"
-            # params = urllib.parse.urlencode({
-            #     "tag": "Occasion.user_id",
-            #     "api_key": "SzpABjzHdXTtZ5pAhQ5ZHS93xVK6sN0g",
-            #     "limit": "1",
-            #     "rating": "g",
-            #     "random_id":"Greetingsoccasion.user_ID"
-            #     })
-            # with urllib.request.urlopen("".join(url, params)) as response:
-            #     data = json.loads(response.read())
-            # print(json.dumps(data, sort_keys=True, indent=4))
-
-                        # Replace the following with the API key generated.
-            API_KEY = "SzpABjzHdXTtZ5pAhQ5ZHS93xVK6sN0g"
-            endpoint = "https://api.giphy.com/v1/gifs/search"
-
-            search_term = greeting.occasion.title
-            params = {"api_key": API_KEY, "limit": 1, "q": search_term, "rating": "g"}
-            response = requests.get(endpoint, params=params).json()
-            gif = response["data"][0]
-            title = gif["title"]
-            if len(response["data"]) > 0:
-                url = response["data"][0]["url"]
-                print(f"\n| url = {url}")
-                print("*"*10, "\n dir response = ")
-                print(dir(response))
-                print("*"*10)
-            else:
-                url = "https://media.giphy.com/media/MuLGuy9Bx6skU/giphy.gif" 
-            
-
             phone = greeting.occasion.contact.phone
             name = (greeting.occasion.contact.fname +" ")
             client.messages.create(to="+1"+ phone, from_="+12156085643",
-                                        body = "hello " + name + greeting.body + " " + url,
-                                        media_url= url)
+                                        body = "hello " + name + greeting.body + " " + url)
+                                        # media_url= url)
 
             phone = greeting.user.phone
             name = (greeting.user.fname + " ")
