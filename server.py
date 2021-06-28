@@ -243,9 +243,27 @@ def send_all():   #opening connection with built in method
             occ = greeting.occasion
             contact = occ.contact
             subject = "hello, " + contact.fname
+                        # Replace the following with the API key generated.
+            API_KEY = "SzpABjzHdXTtZ5pAhQ5ZHS93xVK6sN0g"
+            endpoint = "https://api.giphy.com/v1/gifs/search"
+
+            search_term = greeting.occasion.title
+            print(search_term, "*********")
+            params = {"api_key": API_KEY, "limit": 1, "q": search_term, "rating": "g"}
+            response = requests.get(endpoint, params=params).json()
+            # gif = response["data"][0]
+            # title = gif["title"]
+            if len(response["data"]) > 0:
+                url = response["data"][0]["url"]
+                print(f"\n| url = {url}")
+                print("*"*10, "\n dir response = ")
+                print(dir(response))
+                print("*"*10)
+            else:
+                url = "https://media.giphy.com/media/MuLGuy9Bx6skU/giphy.gif"
             print(contact.email)
             msg = Message(recipients= [contact.email],
-                          body= greeting.body,
+                          body= "hello " + contact.fname + greeting.body + " <img src='" + url + "'>",#greeting.body,
                           subject= subject)
             print("************")
             print(msg)
@@ -296,18 +314,26 @@ def send_all():   #opening connection with built in method
             API_KEY = "SzpABjzHdXTtZ5pAhQ5ZHS93xVK6sN0g"
             endpoint = "https://api.giphy.com/v1/gifs/search"
 
-            search_term = greeting.occasion
+            search_term = greeting.occasion.title
             params = {"api_key": API_KEY, "limit": 1, "q": search_term, "rating": "g"}
             response = requests.get(endpoint, params=params).json()
-            for gif in response["data"]:
-                title = gif["title"]
-                url = gif["url"]
-                print(f"{title} | {url}")
+            gif = response["data"][0]
+            title = gif["title"]
+            if len(response["data"]) > 0:
+                url = response["data"][0]["url"]
+                print(f"\n| url = {url}")
+                print("*"*10, "\n dir response = ")
+                print(dir(response))
+                print("*"*10)
+            else:
+                url = "https://media.giphy.com/media/MuLGuy9Bx6skU/giphy.gif" 
+            
+
             phone = greeting.occasion.contact.phone
             name = (greeting.occasion.contact.fname +" ")
             client.messages.create(to="+1"+ phone, from_="+12156085643",
-                                        body = "hello, " + name + greeting.body, 
-                                        media_url= ["http://api.giphy.com/v1/stickers/random"])
+                                        body = "hello " + name + greeting.body + " " + url,
+                                        media_url= url)
 
             phone = greeting.user.phone
             name = (greeting.user.fname + " ")
