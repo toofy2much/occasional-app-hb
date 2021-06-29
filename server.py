@@ -224,7 +224,7 @@ def add_occasion(contact_id):
 
 #     return 'msg has been sent'
 
-@app.route('/bulk')    
+@app.route('/bulk')#,methods=['POST'])    
 def send_all():   #opening connection with built in method
     """sends users current greetings emails and texts"""
 
@@ -251,6 +251,8 @@ def send_all():   #opening connection with built in method
             print(search_term, "*********")
             params = {"api_key": API_KEY, "limit": 1, "q": search_term, "rating": "g"}
             response = requests.get(endpoint, params=params).json()
+
+            #""_data = json.loads(f.read())
             # gif = response["data"][0]
             # title = gif["title"]
             if len(response["data"]) > 0:
@@ -262,8 +264,11 @@ def send_all():   #opening connection with built in method
             else:
                 url = "https://media.giphy.com/media/MuLGuy9Bx6skU/giphy.gif"
             print(contact.email)
+
+            #with app.open_resource(response) as f:
+                #msg.attach(response)response
             msg = Message(recipients= [contact.email],
-                          body= "hello " + contact.fname + greeting.body + url,#greeting.body,
+                          body= "hello " + contact.fname + " " + greeting.body + " "+ url,
                           subject= subject)
             print("************")
             print(msg)
@@ -273,7 +278,7 @@ def send_all():   #opening connection with built in method
             name = (greeting.occasion.contact.fname +" ")
             client.messages.create(to="+1"+ phone, from_="+12156085643",
                                         body = "hello " + name + greeting.body + " " + url)
-                                        # media_url= url)
+                                        #media_url= [url])
 
             phone = greeting.user.phone
             name = (greeting.user.fname + " ")
@@ -281,10 +286,11 @@ def send_all():   #opening connection with built in method
             client.messages.create(to="+1"+ phone, from_="+12156085643",
                                         body = "hello, " + name + sent_greeting)
             
-            #print(message.sid) 
+            print(message.sid) 
     
    
     return 'msg has been sent'
+
 
     
 print("*********stopping")
