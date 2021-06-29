@@ -55,6 +55,73 @@ app.config['MAIL_ASCII_ATTACHMENTS'] = False
 
 mail = Mail(app)
 
+def send_all():   #opening connection with built in method
+    """sends users current greetings emails and texts"""
+
+    print('*******in send_all_route*****')
+    
+    user_id = session.get('user_id')
+    greetings = crud.get_users_current_greetings(user_id)
+    crud.mark_sent_greetings(greetings)
+    
+    #crud function take all user greeting data and compare send_date to current date 
+   
+    with mail.connect() as conn:
+        for greeting in greetings:
+    
+           
+            occ = greeting.occasion
+            contact = occ.contact
+            subject = "hello, " + contact.fname
+                        # Replace the following with the API key generated.
+            API_KEY = "SzpABjzHdXTtZ5pAhQ5ZHS93xVK6sN0g"
+            endpoint = "https://api.giphy.com/v1/gifs/search"
+
+            search_term = greeting.occasion.title
+            print(search_term, "*********")
+            params = {"api_key": API_KEY, "limit": 1, "q": search_term, "rating": "g"}
+            response = requests.get(endpoint, params=params).json()
+
+            #""_data = json.loads(f.read())
+            # gif = response["data"][0]
+            # title = gif["title"]
+            if len(response["data"]) > 0:
+                url = response["data"][0]["url"]
+                print(f"\n| url = {url}")
+                print("*"*10, "\n dir response = ")
+                print(dir(response))
+                print("*"*10)
+            else:
+                url = "https://media.giphy.com/media/MuLGuy9Bx6skU/giphy.gif"
+            print(contact.email)
+
+            #with app.open_resource(response) as f:
+                #msg.attach(response)response
+            msg = Message(recipients= [contact.email],
+                          body= "hello " + contact.fname + " " + greeting.body + " "+ url,
+                          subject= subject)
+            print("************")
+            print(msg)
+            conn.send(msg)
+
+            phone = greeting.occasion.contact.phone
+            name = (greeting.occasion.contact.fname +" ")
+            client.messages.create(to="+1"+ phone, from_="+12156085643",
+                                        body = "hello " + name + greeting.body + " " + url)
+                                        #media_url= [url])
+
+            phone = greeting.user.phone
+            name = (greeting.user.fname + " ")
+            sent_greeting = ("Occasion reminder was sent to " + greeting.occasion.contact.fname)
+            client.messages.create(to="+1"+ phone, from_="+12156085643",
+                                        body = "hello, " + name + sent_greeting)
+            
+            #print(client.message.sid) 
+    
+   
+        return 'msg has been sent'  
+#return redirect(/login)
+
 
 # Access the request object
 # Store session info
@@ -223,73 +290,8 @@ def add_occasion(contact_id):
     
 
 #     return 'msg has been sent'
-
-@app.route('/bulk')#,methods=['POST'])    
-def send_all():   #opening connection with built in method
-    """sends users current greetings emails and texts"""
-
-    print('*******in send_all_route*****')
-    
-    user_id = session.get('user_id')
-    greetings = crud.get_users_current_greetings(user_id)
-    crud.mark_sent_greetings(greetings)
-    
-    #crud function take all user greeting data and compare send_date to current date 
    
-    with mail.connect() as conn:
-        for greeting in greetings:
-    
-           
-            occ = greeting.occasion
-            contact = occ.contact
-            subject = "hello, " + contact.fname
-                        # Replace the following with the API key generated.
-            API_KEY = "SzpABjzHdXTtZ5pAhQ5ZHS93xVK6sN0g"
-            endpoint = "https://api.giphy.com/v1/gifs/search"
 
-            search_term = greeting.occasion.title
-            print(search_term, "*********")
-            params = {"api_key": API_KEY, "limit": 1, "q": search_term, "rating": "g"}
-            response = requests.get(endpoint, params=params).json()
-
-            #""_data = json.loads(f.read())
-            # gif = response["data"][0]
-            # title = gif["title"]
-            if len(response["data"]) > 0:
-                url = response["data"][0]["url"]
-                print(f"\n| url = {url}")
-                print("*"*10, "\n dir response = ")
-                print(dir(response))
-                print("*"*10)
-            else:
-                url = "https://media.giphy.com/media/MuLGuy9Bx6skU/giphy.gif"
-            print(contact.email)
-
-            #with app.open_resource(response) as f:
-                #msg.attach(response)response
-            msg = Message(recipients= [contact.email],
-                          body= "hello " + contact.fname + " " + greeting.body + " "+ url,
-                          subject= subject)
-            print("************")
-            print(msg)
-            conn.send(msg)
-
-            phone = greeting.occasion.contact.phone
-            name = (greeting.occasion.contact.fname +" ")
-            client.messages.create(to="+1"+ phone, from_="+12156085643",
-                                        body = "hello " + name + greeting.body + " " + url)
-                                        #media_url= [url])
-
-            phone = greeting.user.phone
-            name = (greeting.user.fname + " ")
-            sent_greeting = ("Occasion reminder was sent to " + greeting.occasion.contact.fname)
-            client.messages.create(to="+1"+ phone, from_="+12156085643",
-                                        body = "hello, " + name + sent_greeting)
-            
-            print(message.sid) 
-    
-   
-    return 'msg has been sent'
 
 
     
@@ -377,7 +379,7 @@ print("*********stopping")
 @app.route('/logout', methods=['POST'])
 def logout():
     """return to homepage"""
-   
+    send_all()
     return redirect('/')
 
 
