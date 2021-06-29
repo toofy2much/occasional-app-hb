@@ -279,28 +279,30 @@ def add_occasion(contact_id):
     else:
         return redirect('/')
 
-
-# @app.route('/send')
-# def test_mail():
-#     msg = Message('hi test email', recipients=['occasionreminder215@gmail.com'])
-#     #msg.add_recipient('')
-#     msg.body= 'test email'
-#     # contact.greeting.body
-#     mail.send(msg)
-    
-
-#     return 'msg has been sent'
-   
-
-
-
-    
+       
 print("*********stopping")
-            #occ = greeting.occasion
-            #contact = occ.contact
-            # to = "+1" + contact.phone
 
-           
+
+@app.route('/bulk', methods = ['GET'])
+def send_greetings():
+    """calls send_all funct to execute current greetings"""
+    send_all()
+
+    return 'all messages sent'
+            
+
+@app.route('/logout', methods=['POST'])
+def logout():
+    """return to homepage"""
+    send_all()
+    """sends currents greetings"""
+    return redirect('/')
+
+
+
+if __name__ == '__main__':
+    connect_to_db(app)
+    app.run(host='0.0.0.0', debug=True)
            
 
     #User.query.get(session['user_id']).filter(Greeting.send_date== x).all()
@@ -376,14 +378,3 @@ print("*********stopping")
 # would be cool if just sent on the date without logging 
 # or hitting a button if it was hosted 
 
-@app.route('/logout', methods=['POST'])
-def logout():
-    """return to homepage"""
-    send_all()
-    return redirect('/')
-
-
-
-if __name__ == '__main__':
-    connect_to_db(app)
-    app.run(host='0.0.0.0', debug=True)
