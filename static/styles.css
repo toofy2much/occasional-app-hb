@@ -15,3 +15,24 @@
 .table.tr {
     padding: 10px;
 }
+
+/* table,
+tr,
+td,
+th {
+  border-collapse: collapse;
+}
+tr.header {
+  cursor: pointer;
+}
+.header.sign:after {
+  content: "\2B9D";
+  display: inline-block;
+  transition: transform 0.3s;
+  transform: rotate(0deg);
+}
+.header.expand.sign:after {
+  *content:"\2B9F";
+  transition: transform 0.3s;
+  transform: rotate(180deg);
+} */

@@ -151,7 +151,7 @@ def new_user():
 
     #check_user = User.query.filter_by(email=email).first()
 
-    if crud.add_user(fname, lname, email, phone, password) :
+    if crud.add_user(fname.title(), lname.title(), email, phone, password) :
         flash('Created a user! Now you can log in.')
     else:
         # If not, create new user and add to database
@@ -198,7 +198,7 @@ def new_contact():
         # contact= request.form.get('contact')
         # crud.add_contact()
         # return render_template('contacts.html')
-        if not crud.add_contact(fname, lname, email, phone, user_id):
+        if not crud.add_contact(fname.title(), lname.title(), email, phone, user_id):
             flash('A contact already exists with that email')
         else:
             flash('select your contact below to add special occasions')
@@ -252,11 +252,12 @@ def get_occasions(contact_id):
         greetings = []
         for occ in occasions:
             greeting = Greeting.query.filter_by(user_id=user_id, occasion_id=occ.occasion_id).first()
-            greeting = Greeting.query.order_by(Greeting.send_date.dsc()).all()
+            #greeting = Greeting.query.order_by(Greeting.send_date.dsc()).all()
+            #greeting = Greeting.query,order_by(Greeting.user.occasion_id.send_date)
             if greeting:
                 greetings.append(greeting)
         print(greetings)
-        return render_template('greetings.html', contact=contact, greetings=greetings)
+        return render_template('greetings.html', contact=contact, greetings=reversed(greetings))
     else:
         return redirect('/')
 
