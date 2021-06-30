@@ -15,8 +15,11 @@
      <form action="/contacts" method="POST">
       <label>First name of recipient? <input type="text" name="fname"></label> 
       <label>Last name? <input type="text" name="lname"></label>
-      <label>Email <input type="text" name="email"></label>
-      <label>Phone <input type="text" name="phone"></label>
+      <label>Email <input type="email" name="email"
+                    placeholder="chtheratio@example.com"></label>
+      <label>Phone <input type="tel" id="phone" name="phone"
+             pattern="[0-9]{3}[0-9]{3}[0-9]{4}" required
+             placeholder="Format: 4159351807"></label>
       <input type="submit">
      </form>
   </div>
@@ -51,6 +54,10 @@
     <label>Recipient's First Name<input type="text" name=fname></label>
     <label>Last Name<input type="text" name=lname></label>
     <input type="submit">
+  </div>
+  <h5></h5>
+  <div>
+    <button id= "send">Send All Greetings</button>
   </div>
   </form>
   
