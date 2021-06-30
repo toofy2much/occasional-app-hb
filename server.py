@@ -151,7 +151,7 @@ def new_user():
 
     #check_user = User.query.filter_by(email=email).first()
 
-    if crud.add_user(fname, lname, email, phone, password):
+    if crud.add_user(fname, lname, email, phone, password) :
         flash('Created a user! Now you can log in.')
     else:
         # If not, create new user and add to database
@@ -213,11 +213,11 @@ def new_contact():
 @app.route('/contacts') #endpoint returning table in html of saved contacts
 def contact_table():
     """displays contact data from db in table format"""
-
+    
     contacts = Contact.query.all()
-
+    contacts = Contact.query.order_by(Contact.fname.asc()).all()
+    
     return render_template('contacts.html', contacts=contacts)
-
 
 
 @app.route('/select_contact', methods=['POST'])
@@ -252,6 +252,7 @@ def get_occasions(contact_id):
         greetings = []
         for occ in occasions:
             greeting = Greeting.query.filter_by(user_id=user_id, occasion_id=occ.occasion_id).first()
+            greeting = Greeting.query.order_by(Greeting.send_date.dsc()).all()
             if greeting:
                 greetings.append(greeting)
         print(greetings)
