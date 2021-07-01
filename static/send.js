@@ -93,11 +93,11 @@ $('#send_dt').click(function () {
 //         $(this).attr('placeholder', $(this).data('placeholder'));
 //     }
 // });
-$("tbody").slideToggle('slow');
+// $("tbody").slideToggle('slow');
 
 $('thead').click(function(){ 
     //  $(this).toggleClass('.table'); 
-  $("tbody").slideToggle('slow');
+  $(".tr_toggle").slideToggle('slow');
  
 });
 

@@ -10,16 +10,8 @@
 {% block body %}
 <!-- <div class="my_image"></div> -->
   <h1 class="text-center" >Occasional Occasion Reminder App</h1>
-  {% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-      <ul class=flashes>
-      {% for category, message in messages %}
-        <li class="{{ category }}">{{ message }}</li>
-      {% endfor %}
-    </ul>
-  {% endif %}
-{% endwith %}
-<div class="container">
+  
+  <div class="container">
     <form action="/register" method="POST" >
       <!-- <image src="https://media.giphy.com/media/w094GwR3VZesRrfk3W/giphy.gif"></image> -->
       <image src="https://media.giphy.com/media/H8jyqaUEKlmvAeURSK/giphy.gif"></image>

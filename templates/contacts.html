@@ -1,6 +1,6 @@
 <!doctype html>
 
-{% extends 'homepage.html' %} 
+{% extends 'base.html' %} 
 
 
 <!-- adds new contacts to form that submits its data to POST/contacts -->
@@ -38,7 +38,11 @@
     </thead>
     <tbody>
       {% for contact in contacts %}
-      <tr>
+      {% if contacts.index(contact) < 5 %}
+      <tr class= "tr_visible">
+      {% else %}
+      <tr class= "tr_toggle">
+      {% endif %}
         <th scope="row">{{contact.contact_id}}</th>
         <td>{{contact.fname}}</td>
         <td>{{contact.lname}}</td> 

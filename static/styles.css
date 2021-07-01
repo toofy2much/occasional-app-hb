@@ -16,35 +16,50 @@
     padding: 10px;
 }
 
+/* .tr_visible {
+
+} */
+.tr_toggle {
+  display: none;
+}
+.text-center{
+  color: rgba(243, 50, 12, 0.985) ;
+  font-weight: bold;
+  font-optical-sizing: auto;
+}
+
  body {
-  background-image: 
+
+  background-image: url('/static/images/wallpaper2.png'); 
+  background-size: cover;
+  background-repeat: no-repeat;
   /* url("https://i.redd.it/035x2h7v3kl31.jpg");  */
-  /* padding: 60px;
-} */ 
-/* .my_image
-{
-    background:URL
-    url <a href="https://unsplash.com/s/photos/pattern-background?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
-    /* ('static/images/wallpaper.png'); */
-    width:100px;
-    height:100px;
+  padding: 60px;
+} 
+ul {list-style-type: none
+    
 }
 
 .flashes {
-    color: mediumvioletred ;
-    background-color: rgb(142, 248, 248);
-    
+    color: rgb(21, 24, 199) ;
+    font-weight: bold;
+    background-color: rgb(225, 236, 72);
 }
+
+
+
+    
+
 button {
     border: none;
     padding: 5px;
     border-radius: 4px;
-    background-color: rgb(189, 122, 233);
+    background-color: rgb(61, 226, 61);
     transition: .5s all;
 }
 
 button:hover {
-  background-color: rgb(235, 235, 149);
+  background-color: rgb(209, 238, 49);
   transform: translateY(-3px);
 }
 
