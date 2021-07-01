@@ -257,7 +257,7 @@ def get_occasions(contact_id):
             if greeting:
                 greetings.append(greeting)
         print(greetings)
-        return render_template('greetings.html', contact=contact, greetings=reversed(greetings))
+        return render_template('greetings.html', contact=contact, greetings=greetings)
     else:
         return redirect('/')
 

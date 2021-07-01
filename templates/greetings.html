@@ -32,8 +32,15 @@
                 <th scope= "col">Send Date</th>
             </tr>
             </thead>
-            {% for greeting in greetings %}
-            <tr>
+            {% for greeting in greetings|reverse %}
+            
+            {% if greetings.index(greeting) < 5 %}
+            <tr class= "tr_visible">
+            {% else %}
+             <tr class= "tr_toggle">
+            {% endif %}
+
+            
                 <th scope="row">{{greeting.greeting_id}}</th>
                 <td>{{contact.fname}}</td>
                 <td>{{greeting.body}}</td> 
@@ -49,6 +56,7 @@
    </div>
   <h3>Logout</h3>
   <form action="/logout" method="POST"> 
-    <button type="submit">Submit</button>
+    <button type="submit">Logout</button>
   </form> 
+</div>
 {% endblock %} 
