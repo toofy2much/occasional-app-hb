@@ -1,11 +1,11 @@
 .table {
-    border-spacing: 0;
+    border-spacing: 2;
     margin: 1rem;
-    background-color: lightgray;
+    background-color: rgba(238, 227, 207, 0.985);
 }
 
 .table.th:nth-child(even){
-    background-color: lightyellow;
+    background-color: rgb(115, 194, 155);
 }
 
 .table.th {
@@ -15,6 +15,39 @@
 .table.tr {
     padding: 10px;
 }
+
+ body {
+  background-image: 
+  /* url("https://i.redd.it/035x2h7v3kl31.jpg");  */
+  /* padding: 60px;
+} */ 
+/* .my_image
+{
+    background:URL
+    url <a href="https://unsplash.com/s/photos/pattern-background?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+    /* ('static/images/wallpaper.png'); */
+    width:100px;
+    height:100px;
+}
+
+.flashes {
+    color: mediumvioletred ;
+    background-color: rgb(142, 248, 248);
+    
+}
+button {
+    border: none;
+    padding: 5px;
+    border-radius: 4px;
+    background-color: rgb(189, 122, 233);
+    transition: .5s all;
+}
+
+button:hover {
+  background-color: rgb(235, 235, 149);
+  transform: translateY(-3px);
+}
+
 
 /* table,
 tr,

@@ -20,7 +20,7 @@
       <label>Phone <input type="tel" id="phone" name="phone"
              pattern="[0-9]{3}[0-9]{3}[0-9]{4}" required
              placeholder="Format: 4159351807"></label>
-      <input type="submit">
+      <button type="submit">Submit</button> 
      </form>
   </div>
 
@@ -33,9 +33,10 @@
         <th scope= "col">First Name</th>
         <th scope= "col">Last Name</th>
         <th scope= "col">Phone Number</th>
-        <th scope= "col">Email</th>
+        <th scope= "col">Email </th>
       </tr>
     </thead>
+    <tbody>
       {% for contact in contacts %}
       <tr>
         <th scope="row">{{contact.contact_id}}</th>
@@ -45,6 +46,8 @@
         <td>{{contact.email}}</td>
       </tr>
       {% endfor %}
+    </tbody>
+      
     </table>
   </div>
 
@@ -53,7 +56,7 @@
   <form action="/select_contact" method="POST">
     <label>Recipient's First Name<input type="text" name=fname></label>
     <label>Last Name<input type="text" name=lname></label>
-    <input type="submit">
+    <button type="submit">Submit</button>
   </div>
   <h5></h5>
   <div>

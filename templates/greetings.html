@@ -14,21 +14,16 @@
    <div>
      <form action="/occasions/{{contact.contact_id}}" method="POST">
       <label>What is the special Occasion? <input type="text" name="title"></label> 
-      <label>When is this Date? <input type="text" name="occasion_date"
+      <label>When is this Date? <input type="text" id="occ_date" name="occasion_date"
              placeholder="Format:  6/19/2021"></label>
       <label>Create Your Custom Message<input type="text" name="body"></label>
-      <label>when would you like to send your greeting?<input type="text" name="send_date"
-             placeholder="Format:  3/13/2020"></label>
+      <label>When Would You Like To Send Your Greeting?<input type="date" id="sent_dt" name="send_date"
+             placeholder="Format:  3/13/2021"></label>
    </div> 
       <h3>"Make Sure This Message is Unique"</h3>
         <div>
         <table class="table">
             <thead>
-              <!-- <style>
-                input:focus::placeholder {
-                  color: transparent;
-                }
-              </style> -->
             <tr> 
                 <th scope= "col">#</th>
                 <th scope= "col">Recipient</th>
@@ -48,15 +43,13 @@
                 <td>{{greeting.send_date}}</td>
             </tr>
             {% endfor %}
-            <input type= "submit"/>
+            <button type="submit">Submit</button>
             </table>
         </form>
         <button id= "send">Send All Greetings</button>
    </div>
   <h3>Logout</h3>
-  <p>
   <form action="/logout" method="POST"> 
-    <input type="submit">
-  </p>
+    <button type="submit">Submit</button>
   </form> 
 {% endblock %} 

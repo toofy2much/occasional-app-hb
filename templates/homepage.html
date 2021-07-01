@@ -8,41 +8,58 @@
 {% block title %}Occasional Occasion Reminder{% endblock %}
 
 {% block body %}
-  <h1>Occasional Occasion Reminder App</h1>
-
-  <h2>Create an Account</h2>
+<!-- <div class="my_image"></div> -->
+  <h1 class="text-center" >Occasional Occasion Reminder App</h1>
   {% with messages = get_flashed_messages(with_categories=true) %}
-  {% if messages %}
-    <ul class=flashes>
-    {% for category, message in messages %}
-      <li class="{{ category }}">{{ message }}</li>
-    {% endfor %}
+    {% if messages %}
+      <ul class=flashes>
+      {% for category, message in messages %}
+        <li class="{{ category }}">{{ message }}</li>
+      {% endfor %}
     </ul>
   {% endif %}
 {% endwith %}
-    
-   <form action="/register" method="POST">
-    <label>What is your first? <input type="text" name="fname"></label>
-    <label>What is your last name? <input type="text" name="lname"></label>
-    <label>Email <input type="email" id="email" name="email"
-           placeholder="chtheratio@example.com"></label>
-    <label>Phone <input type="tel" id="phone" name="phone"
-           pattern="[0-9]{3}[0-9]{3}[0-9]{4}" required
-           placeholder="Format: 4159351807" ></label>
-           <!-- make this hide on hover -->
-    <label>Password <input type="text" name="password"></label>
-    <input type="submit">
-   </p>
-  </form>
-  
-  <h3>Log In</h3>
-  
+<div class="container">
+    <form action="/register" method="POST" >
+      <!-- <image src="https://media.giphy.com/media/w094GwR3VZesRrfk3W/giphy.gif"></image> -->
+      <image src="https://media.giphy.com/media/H8jyqaUEKlmvAeURSK/giphy.gif"></image>
+      <legend><h2>Create an Account</h2></legend>
+    <div class="mb-3">
+      <label class="form-label">What is your first name? <input type="text" name="fname"></label>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">What is your last name? <input type="text" name="lname"></label>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Email <input type="email" id="email" name="email"
+             placeholder="chtheratio@example.com"></label>
+      </div>
+    <div class="mb-3">
+      <label class="form-label">Phone <input type="tel" id="phone" name="phone"
+             pattern="[0-9]{3}[0-9]{3}[0-9]{4}" required
+             placeholder="Format: 4159351807"></label>
+      </div>
+    <div class="mb-3">
+      <label class="form-label">Password <input type="text" name="password"></label>
+     </div>
    
-    <form action="/login" method="POST">
+      <button type="submit">Submit</button>
+    </form>
+</div>
+
+
+   
+  
+  
+  
+<div class="container">
+  <form action="/login" method="POST">
+    <legend><h3>Log In</h3></legend>
       <label>Email <input type="email" name="email"></label>
       <label>Password <input type="text" name="password"></label>
-      <input type="submit">
-    </p>
-  </form>
+      <button type="submit">Submit</button>
+    </form>
+</div>
+ 
 
 {% endblock %} 
