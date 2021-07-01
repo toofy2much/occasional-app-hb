@@ -11,7 +11,7 @@
   <h1>Occasional Occasion Reminder App</h1>
   
   <h2>Create Your Custom Greeting</h2>
-   <div>
+  <div>
      <form action="/occasions/{{contact.contact_id}}" method="POST">
       <label>What is the special Occasion? <input type="text" name="title"></label> 
       <label>When is this Date? <input type="date" id="occ_date" name="occasion_date"></label>
@@ -19,44 +19,44 @@
       <label>When Would You Like To Send Your Greeting?<input type="date" id="sent_dt" 
              name="send_date"></label>
    </div> 
-      <h3>"Make Sure This Message is Unique"</h3>
-        <div>
-        <table class="table">
-            <thead>
-            <tr> 
-                <th scope= "col">#</th>
-                <th scope= "col">Recipient</th>
-                <th scope= "col">Type of Greeting</th>
-                <th scope= "col">Greeting</th>
-                <th scope= "col">Event Date</th>
-                <th scope= "col">Send Date</th>
-            </tr>
-            </thead>
-            {% for greeting in greetings|reverse %}
-            
-            {% if greetings.index(greeting) < 5 %}
-            <tr class= "tr_visible">
-            {% else %}
-             <tr class= "tr_toggle">
-            {% endif %}
-
-            
-                <th scope="row">{{greeting.greeting_id}}</th>
-                <td>{{contact.fname}}</td>
-                <td>{{greeting.body}}</td> 
-                <td>{{greeting.occasion.title}}</td> 
-                <td>{{greeting.occasion.occasion_date}}</td> 
-                <td>{{greeting.send_date}}</td>
-            </tr>
-            {% endfor %}
-            <button type="submit">Submit</button>
-            </table>
-        </form>
+    <h3>"Make Sure This Message is Unique"</h3>
+    <div>
+      <table class="table">
+        <thead>
+          <tr> 
+            <th scope= "col">#</th>
+            <th scope= "col">Recipient</th>
+            <th scope= "col">Type of Greeting</th>
+            <th scope= "col">Greeting</th>
+            <th scope= "col">Event Date</th>
+            <th scope= "col">Send Date</th>
+          </tr>
+        </thead>
+        {% for greeting in greetings|reverse %}
+        {% if greetings.index(greeting) < 5 %}
+          <tr class= "tr_visible">
+          {% else %}
+          <tr class= "tr_toggle">
+          {% endif %}
+            <th scope="row">{{greeting.greeting_id}}</th>
+            <td>{{contact.fname}}</td>
+            <td>{{greeting.body}}</td> 
+            <td>{{greeting.occasion.title}}</td> 
+            <td>{{greeting.occasion.occasion_date}}</td> 
+            <td>{{greeting.send_date}}</td>
+          </tr>
+          {% endfor %}
+        <button type="submit">Submit</button>
+      </table>
+      </form>
         <button id= "send">Send All Greetings</button>
-   </div>
-  <h3>Logout</h3>
-  <form action="/logout" method="POST"> 
-    <button type="submit">Logout</button>
-  </form> 
-</div>
+    </div>
+  
+    <h3>Logout</h3>
+      <div>
+        <form action="/logout" method="POST"> 
+        <button type="submit">Logout</button>
+        </form> 
+      </div>
+
 {% endblock %} 
