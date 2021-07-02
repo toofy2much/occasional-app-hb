@@ -86,7 +86,7 @@ def send_all():   #opening connection with built in method
             # gif = response["data"][0]
             # title = gif["title"]
             if len(response["data"]) > 0:
-                url = response["data"][0]["url"]
+                url = response["data"][0]["images"]["fixed_height"]["url"] #["url"]
                 print(f"\n| url = {url}")
                 print("*"*10, "\n dir response = ")
                 print(dir(response))
@@ -98,17 +98,20 @@ def send_all():   #opening connection with built in method
             #with app.open_resource(response) as f:
                 #msg.attach(response)response
             msg = Message(recipients= [contact.email],
-                          body= "hello " + contact.fname + " " + greeting.body + " "+ url,
+                          html= "hello " + contact.fname + " " + greeting.body + " "+ "<img src='"+ url+"'/>",
                           subject= subject)
             print("************")
             print(msg)
             conn.send(msg)
 
             phone = greeting.occasion.contact.phone
+            print(greeting.occasion.contact.phone)
             name = (greeting.occasion.contact.fname +" ")
-            client.messages.create(to="+1"+ phone, from_="+12156085643",
-                                        body = "hello " + name + greeting.body + " " + url)
+            msg = client.messages.create(to="+1"+ phone, from_="+12156085643",   
+                                        body = "hello " + name + greeting.body + " " + url) 
                                         #media_url= [url])
+            print(phone)                        
+            print(msg)                         
 
             phone = greeting.user.phone
             name = (greeting.user.fname + " ")
@@ -251,9 +254,7 @@ def get_occasions(contact_id):
         occasions = contact.occasions
         greetings = []
         for occ in occasions:
-            greeting = Greeting.query.filter_by(user_id=user_id, occasion_id=occ.occasion_id).first()
-            #greeting = Greeting.query.order_by(Greeting.send_date.dsc()).all()
-            #greeting = Greeting.query,order_by(Greeting.user.occasion_id.send_date)
+            greeting = Greeting.query.filter_by(user_id=user_id, occasion_id=occ.occasion_id).first()          
             if greeting:
                 greetings.append(greeting)
         print(greetings)
@@ -307,76 +308,4 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)
            
 
-    #User.query.get(session['user_id']).filter(Greeting.send_date== x).all()
-                #(user_id=session.get('user_id'))
-    #.get(session['user_id'])
-    #crud.get_users_current_greetings()
-    
-    #contact_phone=["+1" (contact.phone)]
-    #for greeting in greetings:  
-        #phone = greeting.occasion.contact.phone
-        #name = (greeting.occasion.contact.fname +" ")
-        #message = client.messages.create(to="+1"+ phone, from_="+12156085643",
-                                        #body = "hello, " + name + greeting.body)
-
-    
-
-    #return 'msg has been sent' # adjust this message to reflect state
-
-# use a second function or this reminder api
-
-# @app.route('/api/reminders', methods=['GET'])
-# def get_reminders():
-#  """getting all reminders"""
-
-#     reminders = read_reminder_json()
-#     return jsonify({'reminders': reminders})
-
-# @app.route('/api/reminders', methods=['POST'])
-# def create_reminder():
-#     """create reminders"""
-#     req_data = request.get_json()
-
-#     if not all(item in req_data for item in ("phone_number", "message", "due_date")):
-#         abort(400)
-
-#     reminder = {
-#         'id': uuid.uuid4().hex,
-#         'phone_number': req_data['phone_number'],
-#         'message': req_data['message'],
-#         'interval': 'monthly',
-#         'due_date': req_data['due_date']
-#     }
-
-
-#     create_reminder_json(reminder)
-#     return jsonify({'reminder': reminder}), 201
-
-
-# @app.errorhandler(400)
-# def bad_request(error):
-#     return jsonify({'error': 'Bad Request'}), 400
-
-# @app.route('/api/reminders/<reminder_id>', methods=['DELETE'])
-# def delete_reminder(reminder_id):
-#     reminders = read_reminder_json()
-#     reminder = [reminder for reminder in reminders if reminder['id'] == reminder_id]
-#     if len(reminder) == 0:
-#         abort(404)
-#     reminders.remove(reminder[0])
-#     data = {}
-#     data['reminders'] = reminders
-#     write_reminder_json(data)
-#     return jsonify({'message': 'Reminder has been removed successfully'})
-
-
-# @app.errorhandler(404)
-# def not_found(error):
-#     """delete reminder"""
-#     return jsonify({'error': 'Not Found'}), 404
-
-
-# add a button to send todays messages if we cant cronjob
-# would be cool if just sent on the date without logging 
-# or hitting a button if it was hosted 
-
+   
