@@ -33,7 +33,7 @@
   color: rgba(243, 50, 12, 0.985) ;
   /* font-weight: bold; */
   
-  font-family: AkkuratPro-regular;
+  /* font-family: AkkuratPro-regular; */
   font-size: 60px;
   font-optical-sizing: auto, none;
 }
@@ -48,7 +48,22 @@
 ul {list-style-type: none
     
 }
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Corben', Georgia, Times, serif;
+  text-shadow: 4px 4px 4px #ccc;
+  outline-color: rgb(19, 2, 2);
 
+}
+p, div {
+  font-family: 'Nobile', Helvetica, Arial, sans-serif;
+  text-shadow: 2px 2px 2px #ccc;
+}
+
+
+.form-label { 
+  color: rgb(69, 21, 199) ;
+  /* box-shadow: 0 0 1em 1em #ccc; */
+}
 .flashes {
     color: rgb(21, 24, 199) ;
     font-weight: bold;
