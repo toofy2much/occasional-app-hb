@@ -6,8 +6,6 @@ $("#send").on("click",()=> {
     });
 }) 
 
-$.backstretch("/img/wallpaper2.png");
-
 
 setTimeout(function() {
     $('.flashes').slideUp(300);
@@ -15,25 +13,31 @@ setTimeout(function() {
 
 
 $('#email').click(function () {
-  $(this).removeAttr('placeholder');
+
+    $(this).removeAttr('placeholder');
 });
 
 $('#phone').click(function () {
-  $(this).removeAttr('placeholder');
+
+    $(this).removeAttr('placeholder');
 });
 
+
 $('#occ_date').click(function () {
-  $(this).removeAttr('placeholder');
+
+    $(this).removeAttr('placeholder');
 });
   
 
 $('#send_dt').click(function () {
-  $(this).removeAttr('placeholder');
+
+    $(this).removeAttr('placeholder');
 });
   
+// $("tbody").slideToggle('slow');
 
 $('thead').click(function(){ 
   $(".tr_toggle").slideToggle('slow');
 });
 
-
+// $.backstretch("/img/wallpaper2.png");

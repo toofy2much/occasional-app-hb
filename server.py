@@ -82,9 +82,7 @@ def send_all():   #opening connection with built in method
             params = {"api_key": API_KEY, "limit": 1, "q": search_term, "rating": "g"}
             response = requests.get(endpoint, params=params).json()
 
-            #""_data = json.loads(f.read())
-            # gif = response["data"][0]
-            # title = gif["title"]
+            
             if len(response["data"]) > 0:
                 url = response["data"][0]["images"]["fixed_height"]["url"] #["url"]
                 print(f"\n| url = {url}")
@@ -95,8 +93,7 @@ def send_all():   #opening connection with built in method
                 url = "https://media.giphy.com/media/MuLGuy9Bx6skU/giphy.gif"
             print(contact.email)
 
-            #with app.open_resource(response) as f:
-                #msg.attach(response)response
+            
             msg = Message(recipients= [contact.email],
                           html= "hello " + contact.fname + " " + greeting.body + " "+ "<img src='"+ url+"'/>",
                           subject= subject)
@@ -183,8 +180,8 @@ def get_login():
         return redirect('/contacts')
 
     else:
-        flash('Error email and password dont match')
-    
+        flash('Error ...email and password do not match')
+
         return render_template('homepage.html', error=error)
 
 

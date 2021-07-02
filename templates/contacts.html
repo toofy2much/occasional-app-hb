@@ -8,10 +8,10 @@
 {% block title %}Reminder Contact Page{% endblock %}
 
 {% block body %}
-  <h1>Occasional Occasion Reminder App</h1>
+  <h1 class="text-right">Occasional Occasion Reminder App</h1>
 
-  <h2>Add A New Contact!</h2>
-   <div>
+  <legend><h2>Add A New Contact!</h2></legend>
+   <div class="container-md"></div>
      <form action="/contacts" method="POST">
       <label>First name of recipient? <input type="text" name="fname"></label> 
       <label>Last name? <input type="text" name="lname"></label>
@@ -24,8 +24,8 @@
      </form>
   </div>
 
-  <h3>"Existing Contacts"</h3>
-  <div>
+  <legend><h3>"Existing Contacts"</h3></legend>
+  <div class="container-md"></div>
    <table class="table">
      <thead>
        <tr> 
@@ -55,18 +55,26 @@
     </table>
   </div>
 
-  <h4>Select Contact</h4>
-  <div>
+  <legend><h4>Select Contact</h4></legend>
+  <div class="container-md"></div>
   <form action="/select_contact" method="POST">
-    <label>Recipient's First Name<input type="text" name=fname></label>
-    <label>Last Name<input type="text" name=lname></label>
+    <label class="form-label">Recipient's First Name<input type="text" name=fname></label>
+    <label class="form-label">Last Name<input type="text" name=lname></label>
     <button type="submit">Submit</button>
   </div>
   <h5></h5>
-  <div>
+  <div class="container-md"></div>
     <button id= "send">Send All Greetings</button>
   </div>
   </form>
+<div>
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">contacts</li>
+    </ol>
+  </nav>
+</div>
   
   <!-- <h3>Select Greeting</h3>
   <p>

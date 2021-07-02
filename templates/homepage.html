@@ -10,10 +10,11 @@
 {% block body %}
 <!-- <div class="my_image"></div> -->
   <h1 class="text-center" >Occasional Occasion Reminder App</h1>
+  <br>
   <div class="container-fluid">
     <image class="fixed-ratio-resize" src="https://media.giphy.com/media/H8jyqaUEKlmvAeURSK/giphy.gif" alt="logo"></image>
   </div>
-  <div class="container">
+  <div class="container-md">
     <form action="/register" method="POST" >
       <!-- <image src="https://media.giphy.com/media/w094GwR3VZesRrfk3W/giphy.gif"></image> -->
       <legend><h2>Create an Account</h2></legend>
@@ -39,20 +40,20 @@
       <button type="submit">Submit</button>
     </form>
 </div>
-
-
-   
-  
-  
-  
-<div class="container">
+<div class="container-md">
   <form action="/login" method="POST">
     <legend><h3>Log In</h3></legend>
-      <label>Email <input type="email" name="email"></label>
-      <label>Password <input type="text" name="password"></label>
+      <label class="form-label">Email <input type="email" name="email"></label>
+      <label class="form-label">Password <input type="text" name="password"></label>
       <button type="submit">Submit</button>
     </form>
 </div>
- 
+<div>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item active" aria-current="page">login</li>
+  </ol>
+</nav>
+</div>
 
 {% endblock %} 

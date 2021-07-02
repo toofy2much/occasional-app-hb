@@ -8,18 +8,18 @@
 {% block title %}Reminder Occasion/ Greeting Page{% endblock %}
 
 {% block body %}
-  <h1>Occasional Occasion Reminder App</h1>
+  <h1 class="text-left">Occasional Occasion Reminder App</h1>
   
-  <h2>Create Your Custom Greeting</h2>
+  <legend><h2>Create Your Custom Greeting</h2></legend>
   <div>
      <form action="/occasions/{{contact.contact_id}}" method="POST">
-      <label>What is the special Occasion? <input type="text" name="title"></label> 
-      <label>When is this Date? <input type="date" id="occ_date" name="occasion_date"></label>
-      <label>Create Your Custom Message<input type="text" name="body"></label>
-      <label>When Would You Like To Send Your Greeting?<input type="date" id="sent_dt" 
+      <label class="form-label">What is the special Occasion? <input type="text" name="title"></label> 
+      <label class="form-label">When is this Date? <input type="date" id="occ_date" name="occasion_date"></label>
+      <label class="form-label">Create Your Custom Message<input type="text" name="body"></label>
+      <label class="form-label">When Would You Like To Send Your Greeting?<input type="date" id="sent_dt" 
              name="send_date"></label>
    </div> 
-    <h3>"Make Sure This Message is Unique"</h3>
+  <legend><h3>"Make Sure This Message is Unique"</h3></legend>
     <div>
       <table class="table">
         <thead>
@@ -52,11 +52,17 @@
         <button id= "send">Send All Greetings</button>
     </div>
   
-    <h3>Logout</h3>
+  <legend><h3>Logout</h3></legend>
       <div>
         <form action="/logout" method="POST"> 
         <button type="submit">Logout</button>
         </form> 
       </div>
-
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">login</a></li>
+          <li class="breadcrumb-item"><a href="#">contacts</a></li>
+          <li class="breadcrumb-item active" aria-current="page">greetings</li>
+        </ol>
+      </nav>
 {% endblock %} 
