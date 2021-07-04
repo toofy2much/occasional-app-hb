@@ -1,101 +1,128 @@
-.fixed-ratio-resize {
-  max-width: 75%;
+* { 
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    font-family: 'Helvetica Neue', Helvetica, Arial;
+style {
+  overflow-y: auto;
+}
+    
+    
+} 
+body {
+    max-height: 785;
+    min-width: 1366;
+    background-image: url("https://unsplash.com/photos/vHV9B7JHEx4");
+    background-repeat: no-repeat; 
+    margin-left: 80px;
+    margin-bottom: 80px;
+    margin-right: 80px;
+}
+
+.container {  
+    
+    min-width: 15%;
+   
+    max-height: 15%;
+    margin-left: 80px;
+    margin-bottom: 80px;
+    margin-right: 80px;
+}       
+
+
+
+ .form {
+   min-width: 496px;
+   max-height: 696px;
+   padding: 20px;
+   padding-top: 40px
+ }   
+
+h1 {
+  font-family: 'Helvetica Neue', Helvetica, Arial;
+  color: rgb(165, 24, 52);
+  font-size: 53px;
+  font-optical-sizing: auto;
+  text-shadow: 4px 4px 4px #ccc;
+  outline-color: rgb(19, 2, 2);
+  padding-top: 30px;
+  font-weight: 30px;
+}
+
+
+h2, h3, h4, h5, h6 {
+  font-family: 'Helvetica Neue',Helvetica, Arial;
+  color: rgb(165, 24, 52);
+  font-size: 40px;
+  font-optical-sizing: auto;
+  text-shadow: 4px 4px 4px #ccc;
+  outline-color: rgb(19, 2, 2);
+  padding-top: 10px;
+}
+
+
+div {
+  font-family: 'Helvetica Neue', Helvetica, Arial;
+  text-shadow: 2px 2px 2px #ccc;
+}
+
+.text-left-align{
+  padding: 65px;
+}
+/* .fixed-ratio-resize {
+  max-width: 95%;
   height: auto;
   width: auto\9;
-  padding: 3rem;
-  }
+  padding-right: 40px;
+  } */
   
+/* .card {display:inline-block;} */
 .table {
+    font: Helvetica;
+    font-size: 21px;
+    max-width: 100%;
+    min-width: 10%;
+    min-height: 5%;
+    max-height: 35%;
+    table-layout: auto;
     border-spacing: 2;
-    margin: 1rem;
+    margin: 2rem;
+    
+    
+   
     background-color: rgba(238, 227, 207, 0.985);
+    border-radius: 25px;
+    padding-left: 20px;
 }
+
 
 .table.th:nth-child(even){
     background-color: rgb(115, 194, 155);
 }
 
 .table.th {
+
     text-align: left;
+    padding: 15px;
 }
 
 .table.tr {
-    padding: 10px;
+    padding: 15px;
 }
 
-/* .tr_visible {
+.tr_visible {
 
-} */
-.tr_toggle {
-  display: none;
-}
-.text-center{
-  color: rgba(243, 50, 12, 0.985) ;
-  /* font-weight: bold; */
-  
-  /* font-family: AkkuratPro-regular; */
-  font-size: 60px;
-  font-optical-sizing: auto, none;
-}
-
- body {
-
-  background-image: url('/static/images/wallpaper2.png'); 
-  background-size: cover;
-  background-repeat: no-repeat;
-  padding: 60px;
 } 
-ul {list-style-type: none
-    
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Corben', Georgia, Times, serif;
-  text-shadow: 4px 4px 4px #ccc;
-  outline-color: rgb(19, 2, 2);
-
-}
-p, div {
-  font-family: 'Nobile', Helvetica, Arial, sans-serif;
-  text-shadow: 2px 2px 2px #ccc;
-}
-
-
-
-.form-label { 
-  color: rgb(69, 21, 199) ; 
-  /* box-shadow: 0 0 1em 1em #ccc; */
-}
-.flashes {
-    color: rgb(21, 24, 199) ;
-    font-weight: bold;
-    background-color: rgb(225, 236, 72);
-}
-
-
-
-
-    
-
-button {
-    border: none;
-    padding: 4px;
-    border-radius: 6px;
-    background-color: rgb(49, 241, 158);
-    transition: .5s all;
-}
-
-button:hover {
-  background-color: rgb(209, 238, 49);
-  transform: translateY(-3px);
-}
-
-
-/* table,
+table,
 tr,
 td,
 th {
   border-collapse: collapse;
+  
 }
 tr.header {
   cursor: pointer;
@@ -110,4 +137,69 @@ tr.header {
   *content:"\2B9F";
   transition: transform 0.3s;
   transform: rotate(180deg);
-} */
+}
+.tr_toggle {
+  display: none;
+}
+
+
+.text-center{
+  color: rgba(243, 50, 12, 0.985) ;
+  font-weight: bold;
+  
+  /* font-family: AkkuratPro-regular; */
+  
+  font-optical-sizing: auto, none;
+  padding-top: 40px;
+}
+ 
+.col-sm-4{
+  padding-top: 20px;
+}
+  /* background-image: url('/static/images/wallpaper2.png'); */
+  /* height: 100vh; */
+  /* background-size:  101% auto; */
+  /* background-repeat: no-repeat; */
+  /* padding: 0px; */
+
+  
+ul {list-style-type: none;
+
+
+}
+
+.form-label {
+  color: rgb(69, 21, 199); 
+  font: Helvetica;
+  font-size: 20px;
+  padding-right: 10px;
+ 
+  /* box-shadow: 0 0 1em 1em #ccc; */
+}
+.flashes {
+    color: rgb(21, 24, 199);
+    font-weight: bold;
+    background-color: rgb(225, 236, 72);
+}
+
+button {
+    border: none;
+    padding: 6px;
+    border-radius: 10px;
+    background-color: rgb(49, 241, 158);
+    transition: .5s all;
+    font: 25px;
+}
+
+
+button:hover {
+  background-color: rgb(209, 238, 49);
+  transform: translateY(-3px);
+}
+
+nav {
+  font: 25px;
+  padding-top: 10px;
+  padding-left: 235px;
+}
+

@@ -8,6 +8,7 @@
 {% block title %}Reminder Occasion/ Greeting Page{% endblock %}
 
 {% block body %}
+<div class="col-12 col-md col-lg-4">
   <h1 class="text-left">Occasional Occasion Reminder App</h1>
   
   <legend><h2>Create Your Custom Greeting</h2></legend>
@@ -15,13 +16,16 @@
      <form action="/occasions/{{contact.contact_id}}" method="POST">
       <label class="form-label">What is the special Occasion? <input type="text" name="title"></label> 
       <label class="form-label">When is this Date? <input type="date" id="occ_date" name="occasion_date"></label>
-      <label class="form-label">Create Your Custom Message<input type="text" name="body"></label>
-      <label class="form-label">When Would You Like To Send Your Greeting?<input type="date" id="sent_dt" 
+      <label class="form-label">Create Your Custom Message <input type="text" name="body"></label>
+      <label class="form-label">When Would You Like To Send Your Greeting? <input type="date" id="sent_dt" 
              name="send_date"></label>
    </div> 
-  <legend><h3>"Make Sure This Message is Unique"</h3></legend>
-    <div>
-      <table class="table">
+   </div>
+  <legend><h3>Make Sure This Message is Unique * </h3></legend>
+  
+    <div class="col-12 col-md col-lg-4">
+      <table class="table table table-hover table-striped 
+                    table-responsive-md">
         <thead>
           <tr> 
             <th scope= "col">#</th>
@@ -29,7 +33,8 @@
             <th scope= "col">Type of Greeting</th>
             <th scope= "col">Greeting</th>
             <th scope= "col">Event Date</th>
-            <th scope= "col">Send Date</th>
+            <th scope= "col">Send Date <button type="button" 
+                class="btn btn-outline-info">see more</button></th>
           </tr>
         </thead>
         {% for greeting in greetings|reverse %}
@@ -49,20 +54,25 @@
         <button type="submit">Submit</button>
       </table>
       </form>
+      <div class="col-12 col-md col-lg-4">
         <button id= "send">Send All Greetings</button>
     </div>
-  
+  <div class="col-12 col-md col-lg-4">
   <legend><h3>Logout</h3></legend>
       <div>
         <form action="/logout" method="POST"> 
         <button type="submit">Logout</button>
         </form> 
       </div>
+      </div>
+      <div class="col-12 col-md col-lg-4">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="#">login</a></li>
+          <li class="breadcrumb-item"><a href="#">home</a></li>
           <li class="breadcrumb-item"><a href="#">contacts</a></li>
           <li class="breadcrumb-item active" aria-current="page">greetings</li>
         </ol>
       </nav>
+      </div>
 {% endblock %} 
+</html> 

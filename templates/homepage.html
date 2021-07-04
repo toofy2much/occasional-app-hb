@@ -8,52 +8,69 @@
 {% block title %}Occasional Occasion Reminder{% endblock %}
 
 {% block body %}
-<!-- <div class="my_image"></div> -->
-  <h1 class="text-center" >Occasional Occasion Reminder App</h1>
-  <br>
-  <div class="container-fluid">
-    <image class="fixed-ratio-resize" src="https://media.giphy.com/media/H8jyqaUEKlmvAeURSK/giphy.gif" alt="logo"></image>
+  
+
+
+
+<div class="h-100 d-flex justify-content-center">
+</div>
+ <h1>Occasional Occasion Reminder</h1>
+ <legend><h2>Create an Account</h2></legend> 
+ </div>
+
+  <div class="container">
+       <div class="row">
+           <div class="flex-col-4 col-md col-lg-6">
+          <image 
+            src="https://media.giphy.com/media/H8jyqaUEKlmvAeURSK/giphy.gif" 
+            alt="logo">    
+          </div>
+        <div class="flex=col-6 col-md col-lg-4">
+            <form action="/register" method="POST">
+                <div class="mb-3">
+                <label class="form-label">What is your first name? <input type="text" 
+                       name="fname"></label>
+                </div>
+                <div class="mb-3">
+                <label class="form-label">What is your last name? <input type="text" name="lname"></label>
+                </div>
+                <div class="mb-3">
+                <label class="form-label">Email <input type="email" id="email" name="email"
+                       placeholder="chtheratio@example.com"></label>
+                </div>  
+                <div class="mb-3">
+                <label class="form-label">Phone <input type="tel" id="phone" name="phone"
+                       pattern="[0-9]{3}[0-9]{3}[0-9]{4}" required
+                       placeholder="Format: 4159351807"></label>   
+                </div>                    
+                <div class="mb-3">
+                <label class="form-label">Password <input type="text" name="password"></label>
+                </div>
+                   <button type="submit">Submit</button>
+                </form>  
+            </div> 
+          </div>
+        </div>
+    <div class="row h-100 d-flex justify-content-center align-items-center">
+      <legend><h3 class="col-12 col-md col-lg-4">Login</h3></legend>  
+        <form action="/login" method="POST">
+          <label class="form-label">Email <input type="email" name="email"></label>
+          <label class="form-label">Password <input type="text" name="password" ></label>
+         <button type="submit">Submit</button>
+        </form>
+    <div class="col-12 col-md col-lg-4">
+     <div><i class="fa fa-align-left" aria-hidden="true"></i>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="home">contacts</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
   </div>
-  <div class="container-md">
-    <form action="/register" method="POST" >
-      <!-- <image src="https://media.giphy.com/media/w094GwR3VZesRrfk3W/giphy.gif"></image> -->
-      <legend><h2>Create an Account</h2></legend>
-    <div class="mb-3">
-      <label class="form-label">What is your first name? <input type="text" name="fname"></label>
-    </div>
-    <div class="mb-3">
-      <label class="form-label">What is your last name? <input type="text" name="lname"></label>
-    </div>
-    <div class="mb-3">
-      <label class="form-label">Email <input type="email" id="email" name="email"
-             placeholder="chtheratio@example.com"></label>
-      </div>
-    <div class="mb-3">
-      <label class="form-label">Phone <input type="tel" id="phone" name="phone"
-             pattern="[0-9]{3}[0-9]{3}[0-9]{4}" required
-             placeholder="Format: 4159351807"></label>
-      </div>
-    <div class="mb-3">
-      <label class="form-label">Password <input type="text" name="password"></label>
-     </div>
-   
-      <button type="submit">Submit</button>
-    </form>
-</div>
-<div class="container-md">
-  <form action="/login" method="POST">
-    <legend><h3>Log In</h3></legend>
-      <label class="form-label">Email <input type="email" name="email"></label>
-      <label class="form-label">Password <input type="text" name="password"></label>
-      <button type="submit">Submit</button>
-    </form>
-</div>
-<div>
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item active" aria-current="page">login</li>
-  </ol>
-</nav>
 </div>
 
+
 {% endblock %} 
+</html> 

@@ -8,35 +8,43 @@
 {% block title %}Reminder Contact Page{% endblock %}
 
 {% block body %}
-  <h1 class="text-right">Occasional Occasion Reminder App</h1>
-
-  <legend><h2>Add A New Contact!</h2></legend>
-   <div class="container-md"></div>
-     <form action="/contacts" method="POST">
-      <label>First name of recipient? <input type="text" name="fname"></label> 
-      <label>Last name? <input type="text" name="lname"></label>
-      <label>Email <input type="email" id="email" name="email"
-                    placeholder="chtheratio@example.com"></label>
-      <label>Phone <input type="tel" id="phone" name="phone"
-             pattern="[0-9]{3}[0-9]{3}[0-9]{4}" required
-             placeholder="Format: 4159351807"></label>
-      <button type="submit">Submit</button> 
-     </form>
-  </div>
-
-  <legend><h3>"Existing Contacts"</h3></legend>
+  <legend><h1><i class="fa fa-align-justify" aria-hidden="true">
+      </i>Occasional Occasion Reminder</h1></legend>
   <div class="container-md"></div>
-   <table class="table">
-     <thead>
-       <tr> 
-        <th scope= "col">#</th>
-        <th scope= "col">First Name</th>
-        <th scope= "col">Last Name</th>
-        <th scope= "col">Phone Number</th>
-        <th scope= "col">Email </th>
-      </tr>
-    </thead>
-    <tbody>
+    <div class="row">
+      <div class="flex-col-4 col-md col-lg-4">
+        <legend><h2>Add A New Contact!</h2></legend>
+      </div>
+      <div class="flex-col-6 col-md col-lg-6 ">
+      <form action="/contacts" method="POST">
+        <label class="form-label mb-3">First name of recipient? <input type="text" name="fname"></label> 
+        <label class="form-label mb-3">Last name? <input type="text" name="lname"></label>
+        <label class="form-label mb-3">Email <input type="email" id="email" name="email"
+               placeholder="chtheratio@example.com"></label>
+        <label class="form-label mb-3">Phone <input type="tel" id="phone" name="phone"
+               pattern="[0-9]{3}[0-9]{3}[0-9]{4}" required
+               placeholder="Format: 4159351807"></label> 
+       <button type="submit">Submit</button> 
+      </form>
+      </div>
+    </div>
+  </div>
+<div class="container-md"></div>
+  <div class="col-2 col-md col-lg-12">
+    <legend><h3 class="text-center">Existing Contacts</h3></legend>
+    <div>
+      <table class="table table table-hover table-striped 
+                    table-responsive-md">
+        <thead>
+          <tr> 
+            <th scope= "col">#</th>
+            <th scope= "col">First Name</th>
+            <th scope= "col">Last Name</th>
+            <th scope= "col">Phone Number</th>
+            <th scope= "col">Email    <button type="button" class="btn btn-outline-info">see more</button></th>
+          </tr>
+        </thead>
+      <tbody>
       {% for contact in contacts %}
       {% if contacts.index(contact) < 5 %}
       <tr class= "tr_visible">
@@ -50,39 +58,44 @@
         <td>{{contact.email}}</td>
       </tr>
       {% endfor %}
-    </tbody>
-      
+      </tbody>
     </table>
   </div>
-
-  <legend><h4>Select Contact</h4></legend>
-  <div class="container-md"></div>
-  <form action="/select_contact" method="POST">
-    <label class="form-label">Recipient's First Name<input type="text" name=fname></label>
-    <label class="form-label">Last Name<input type="text" name=lname></label>
-    <button type="submit">Submit</button>
-  </div>
-  <h5></h5>
-  <div class="container-md"></div>
-    <button id= "send">Send All Greetings</button>
-  </div>
-  </form>
-<div>
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="#">Home</a></li>
-      <li class="breadcrumb-item active" aria-current="page">contacts</li>
-    </ol>
-  </nav>
 </div>
+
   
-  <!-- <h3>Select Greeting</h3>
-  <p>
-  <form action="/greeting" method="POST">
-    <label>Email <input type="text" fname="email" lname="email"</label>
-    <label>Password <input type="password" fname="password" lname="password"</label>
-    <input type="submit">
-  </p>
-  </form> -->
+<div class="container-md">
+  <div class="row">
+    <div class="flex-col-3 col-md col-lg-5">
+      <legend><h4>Select Contact</h4></legend>
+      <div class="flex-col-3 col-md col-lg-7">
+      <form action="/select_contact" method="POST">
+            <label class="form-label">Recipient's First Name <input type="text" name=fname></label>
+          <label class="form-label">Last Name <input type="text" name=lname></label>
+        <button type="submit">Submit</button>
+      </form>
+      </div>
+    <div>
+  </div>
+</div>
+</div>  
+<div class="container"></div>
+  <div class="col-12 col-md col-lg-4">
+    <button id="send">Send All Greetings</button>
+  </div>
+  
+  </div>
+<div>
+  
+  
+  
+  <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">home</a></li>
+          <li class="breadcrumb-item"><a href="#">contacts</a></li>
+          <li class="breadcrumb-item active" aria-current="page">greetings</li>
+        </ol>
+      </nav>
 
 {% endblock %} 
+</html> 
