@@ -8,16 +8,17 @@
 {% block title %}Reminder Occasion/ Greeting Page{% endblock %}
 
 {% block body %}
-<div class="container-md"></div>
+<div class="container-md">
     <div class="row">
       <h1 class="text-center">Occasional Occasion Reminder App</h1>
     </div>
     
       
-      <div class="container-md"></div>
-        <div class="row">
-          <div class="col-3 col-md col-lg-6"></div>
+      <div class="container-md">
+        <div class="row col-lg-12 bg-light bg-gradient">
           <legend><h2>Create Your Custom Greeting</h2></legend>
+
+          <div class="col6 col-md col-lg-12 bg-light bg-gradient">
         <div>
           <form action="/occasions/{{contact.contact_id}}" method="POST">
             <label class="form-label">What is the special Occasion? <input type="text" name="title"></label> 
@@ -31,7 +32,8 @@
   <button type="submit">Submit</button>
 </div> 
 </div>
-    <div class="col-12 col-md col-lg-4">
+</div>
+    <div class="col-5 col-md col-lg-10">
       <legend><h3>Make Sure This Message is Unique * </h3></legend>
       <table class="table table table-hover table-striped 
                     table-responsive-md">
@@ -64,28 +66,28 @@
        
       </table>
       </form>
-      <div class="container-md"></div>
+     </div>
+      <div class="container"></div>
       <div class="row">
+        <div class="col-6 col-md col-lg-12">
+          <legend><h4 class= "text-center bg-secondary bg-transparent">
+            Your greetings have been 
+            logged<br>and will be sent
+             on date with a special Gif chosen for you Good bye!</h4></legend>
+          </div>
+        </div>
+          <div class="row">
+        <div class="flex-col-4-col-md col-lg-5 ">
         <button id= "send">Send All Greetings</button>
     </div>
-  <div class="col-12 col-md col-lg-4">
-  <legend><h3>
-              
-              We will keep track of all your occasions, special dates, 
-              and loved ones info! Customized will be 
-              sent on date with a special Gif chosen for you 
-          
-              Your greetings have been logged and will be 
-              sent on date with a special Gif chosen for you 
-          
-              Good bye!</h3></legend>
-      <div>
+  
+        <div class="col-2 col-md col-lg-3">
         <form action="/logout" method="POST"> 
         <button type="submit">LOGOUT</button>
         </form> 
       </div>
-      </div>
-      <div class="col-12 col-md col-lg-4">
+     
+      <div class="col-2 col-md col-lg-4">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="#">home</a></li>
@@ -94,5 +96,8 @@
         </ol>
       </nav>
       </div>
+
+    </div>
+  </div>
 {% endblock %} 
 </html> 

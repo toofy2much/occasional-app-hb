@@ -5,14 +5,17 @@
 } 
 
 html {
-    font-size: 16px;
+    font-size: 20px;
+    font-stretch: expanded;
     font-family: 'Helvetica Neue', Helvetica, Arial;
+    font-kerning: auto;
 }
 style {
   overflow-y: auto;
 } 
     
-    
+
+       
 
 body {
   background-image: url('/static/images/wallpaper2.png'); 
@@ -21,6 +24,9 @@ body {
   background-repeat: no-repeat;
  
 }
+/* .bg-image {
+  overflow: hidden;
+  center image. */
   /* margin-left: 80px;
     margin-bottom: 80px;
     margin-right: 80px; 
@@ -43,52 +49,92 @@ background-repeat: no-repeat;
       }
     } */
 
-.container{  
+.container-md{  
     
     min-width: 15%;
    
     max-height: 15%;
     margin-left: 80px;
-    
+   
     margin-right: 80px;
 }       
 
 
 
- .form {
+ form {
+   margin-left: 3rem;
+   padding: 20px;
+   padding-top: 10px;
    
-   padding: 10px;
-   padding-top: 10px
  }   
  /* min-width: 496px;
    max-height: 696px; */
 
 h1 {
   font-family: 'Helvetica Neue', Helvetica, Arial;
-  color: rgb(165, 24, 52);
-  font-size: 48px;
+  color: rgb(250, 87, 58);
+  font-size: 51px;
   font-optical-sizing: auto;
-  text-shadow: 4px 4px 4px #ccc;
-  outline-color: rgb(19, 2, 2);
+  text-shadow: 5px 5px 5px rgb(105, 98, 98);
+  outline-color: rgb(7, 1, 1);
   padding-top: 30px;
-  font-weight: 30px;
+  padding-bottom: 10px;
+  font-weight: bolder;
+  margin-left: 3rem;
+  font-stretch: expanded;
+  font-kerning: auto;
+}
+
+h2 {font-family: 'Helvetica Neue',Helvetica, Arial;
+  color: rgb(24, 165, 146);
+  font-size: 30px;
+  font-optical-sizing: auto;
+  text-shadow: 4px 4px 4px rgb(201, 196, 196);
+  outline-color: rgb(21, 2, 2);
+  padding-top: 33px;
+  margin-left: 4rem;
+  font-weight: bolder;
+  font-stretch: expanded;
+  
 }
 
 
-h2, h3, h4, h5, h6 {
+
+
+h3 {
   font-family: 'Helvetica Neue',Helvetica, Arial;
-  color: rgb(165, 24, 52);
-  font-size: 27px;
+  color: rgb(255, 126, 109);
+  font-size: 36px;
   font-optical-sizing: auto;
-  text-shadow: 4px 4px 4px #ccc;
+  text-shadow: 2px 2px 2px rgb(102, 100, 100);
   outline-color: rgb(19, 2, 2);
   padding-top: 30px;
+  margin-left: 3rem;
+  font-weight: bolder;
+  
+  
 }
+
+
+h4 {
+  font-family: 'Helvetica Neue',Helvetica, Arial;
+  color: rgb(12, 11, 22);
+  font-size: 19px;
+  
+  text-shadow: 1px 1px 1px rgb(102, 100, 100);
+  outline-color: rgb(19, 2, 2);
+  padding-top: 10px;
+  
+  font-weight: bolder;
+  
+  
+}
+
 
 
 div {
   font-family: 'Helvetica Neue', Helvetica, Arial;
-  text-shadow: 2px 2px 2px #ccc;
+  text-shadow: 1px 1px 1px #ccc;
 }
 
 .text-left-align{
@@ -111,7 +157,8 @@ div {
     max-height: 35%;
     table-layout: auto;
     border-spacing: 2;
-    margin: 8rem;
+    
+    margin-left: 8rem;
     
     
    
@@ -189,15 +236,17 @@ ul {list-style-type: none;
 }
 
 .form-label {
-  color: rgb(69, 21, 199); 
+  color: rgb(3, 3, 83); 
   font: Helvetica;
-  font-size: 20px;
+  font-size: 19px;
+  font-weight: bold;
+  
   padding-right: 10px;
  
   /* box-shadow: 0 0 1em 1em #ccc; */
 }
 .flashes {
-    color: rgb(21, 24, 199);
+    color: rgb(25, 27, 92);
     font-weight: bold;
     background-color: rgb(225, 236, 72);
 }
@@ -206,15 +255,19 @@ button {
     border: none;
     padding: 6px;
     border-radius: 10px;
-    background-color: rgb(49, 241, 158);
+    background-color: rgb(163, 248, 208);
     transition: .5s all;
     font: 25px;
+    color: rgb(25, 27, 92);
+    font-weight: 900;
+    margin-bottom: 10px;
 }
 
 
 button:hover {
-  background-color: rgb(209, 238, 49);
+  background-color: rgb(250, 245, 181);
   transform: translateY(-3px);
+  
 }
 
 nav {
@@ -223,3 +276,6 @@ nav {
   /* padding-left: 235px; */
 }
 
+#send{
+  margin-top: 10px;
+}
