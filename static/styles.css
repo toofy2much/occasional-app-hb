@@ -39,13 +39,13 @@ body {
    min-width: 496px;
    max-height: 696px;
    padding: 20px;
-   padding-top: 40px
+   padding-top: 10px
  }   
 
 h1 {
   font-family: 'Helvetica Neue', Helvetica, Arial;
   color: rgb(165, 24, 52);
-  font-size: 53px;
+  font-size: 48px;
   font-optical-sizing: auto;
   text-shadow: 4px 4px 4px #ccc;
   outline-color: rgb(19, 2, 2);
@@ -57,7 +57,7 @@ h1 {
 h2, h3, h4, h5, h6 {
   font-family: 'Helvetica Neue',Helvetica, Arial;
   color: rgb(165, 24, 52);
-  font-size: 40px;
+  font-size: 27px;
   font-optical-sizing: auto;
   text-shadow: 4px 4px 4px #ccc;
   outline-color: rgb(19, 2, 2);
@@ -105,7 +105,7 @@ div {
 }
 
 .table.th {
-
+  
     text-align: left;
     padding: 15px;
 }
@@ -200,6 +200,6 @@ button:hover {
 nav {
   font: 25px;
   padding-top: 10px;
-  padding-left: 235px;
+  /* padding-left: 235px; */
 }
 

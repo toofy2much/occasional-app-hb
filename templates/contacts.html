@@ -8,14 +8,16 @@
 {% block title %}Reminder Contact Page{% endblock %}
 
 {% block body %}
-  <legend><h1><i class="fa fa-align-justify" aria-hidden="true">
-      </i>Occasional Occasion Reminder</h1></legend>
+  <legend><h1>Occasional Occasion Reminder</h1></legend>
   <div class="container-md"></div>
     <div class="row">
-      <div class="flex-col-4 col-md col-lg-4">
-        <legend><h2>Add A New Contact!</h2></legend>
+      <div class="flex-col-6 col-md col-lg-12">
+        <legend><h2><i class="fa fa-align-justify-left" aria-hidden="true">
+                       </i>ADD A NEW CONTACT</h2>
+        </legend>
       </div>
-      <div class="flex-col-6 col-md col-lg-6 ">
+      <div class="row">
+      <div class="flex-col-6 col-md col-lg-12">
       <form action="/contacts" method="POST">
         <label class="form-label mb-3">First name of recipient? <input type="text" name="fname"></label> 
         <label class="form-label mb-3">Last name? <input type="text" name="lname"></label>
@@ -26,12 +28,13 @@
                placeholder="Format: 4159351807"></label> 
        <button type="submit">Submit</button> 
       </form>
+    </div>
       </div>
     </div>
   </div>
 <div class="container-md"></div>
-  <div class="col-2 col-md col-lg-12">
-    <legend><h3 class="text-center">Existing Contacts</h3></legend>
+  <div class="col-4 col-md col-lg-8">
+    <legend><h3 class="text-center">EXISTING CONTACTS</h3></legend>
     <div>
       <table class="table table table-hover table-striped 
                     table-responsive-md">
@@ -41,7 +44,9 @@
             <th scope= "col">First Name</th>
             <th scope= "col">Last Name</th>
             <th scope= "col">Phone Number</th>
-            <th scope= "col">Email    <button type="button" class="btn btn-outline-info">see more</button></th>
+            <th scope= "col">Email</th>
+            <th scope= "col"><button type="button" 
+                class="btn btn-outline-info">See More</button></th>          
           </tr>
         </thead>
       <tbody>
@@ -56,46 +61,42 @@
         <td>{{contact.lname}}</td> 
         <td>{{contact.phone}}</td>
         <td>{{contact.email}}</td>
+        <td></td>
       </tr>
       {% endfor %}
       </tbody>
     </table>
   </div>
-</div>
-
-  
-<div class="container-md">
+</div> 
+<div class="container">
   <div class="row">
-    <div class="flex-col-3 col-md col-lg-5">
-      <legend><h4>Select Contact</h4></legend>
-      <div class="flex-col-3 col-md col-lg-7">
+    <div class="flex-col-6-col-md col-lg-12">
+      <legend><h4>SELECT CONTACT</h4></legend>
+    </div>
+  </div>
+  <div class="row">
+      <div class="flex-col-3-col-md col-lg-6">
       <form action="/select_contact" method="POST">
-            <label class="form-label">Recipient's First Name <input type="text" name=fname></label>
+          <label class="form-label">Recipient's First Name <input type="text" name=fname></label>
           <label class="form-label">Last Name <input type="text" name=lname></label>
         <button type="submit">Submit</button>
       </form>
       </div>
-    <div>
-  </div>
-</div>
-</div>  
-<div class="container"></div>
-  <div class="col-12 col-md col-lg-4">
-    <button id="send">Send All Greetings</button>
-  </div>
-  
-  </div>
-<div>
-  
-  
-  
-  <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="#">home</a></li>
-          <li class="breadcrumb-item"><a href="#">contacts</a></li>
-          <li class="breadcrumb-item active" aria-current="page">greetings</li>
-        </ol>
-      </nav>
+      <div class="flex-col-1-col-md col-lg-2">
+        <button id="send">Send All Greetings</button>
+      </div>
+      <div class="col-2-col-md col-lg-4">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+             <li class="breadcrumb-item"><a href="#">home</a></li>
+             <li class="breadcrumb-item"><a href="#">contacts</a></li>
+             <li class="breadcrumb-item active" aria-current="page">greetings</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div> 
+ <div>
 
 {% endblock %} 
 </html> 

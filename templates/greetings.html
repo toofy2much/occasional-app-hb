@@ -8,22 +8,28 @@
 {% block title %}Reminder Occasion/ Greeting Page{% endblock %}
 
 {% block body %}
-<div class="col-12 col-md col-lg-4">
-  <h1 class="text-left">Occasional Occasion Reminder App</h1>
-  
-  <legend><h2>Create Your Custom Greeting</h2></legend>
-  <div>
-     <form action="/occasions/{{contact.contact_id}}" method="POST">
-      <label class="form-label">What is the special Occasion? <input type="text" name="title"></label> 
-      <label class="form-label">When is this Date? <input type="date" id="occ_date" name="occasion_date"></label>
-      <label class="form-label">Create Your Custom Message <input type="text" name="body"></label>
-      <label class="form-label">When Would You Like To Send Your Greeting? <input type="date" id="sent_dt" 
-             name="send_date"></label>
-   </div> 
-   </div>
-  <legend><h3>Make Sure This Message is Unique * </h3></legend>
-  
+<div class="container-md"></div>
+    <div class="row">
+      <div class="col-12 col-md col-lg-4">
+        <h1 class="text-left">Occasional Occasion Reminder App</h1>
+      <div class="container-md"></div>
+        <div class="row">
+          <legend><h2>Create Your Custom Greeting</h2></legend>
+        <div>
+          <form action="/occasions/{{contact.contact_id}}" method="POST">
+            <label class="form-label">What is the special Occasion? <input type="text" name="title"></label> 
+            <label class="form-label">When is this Date? <input type="date" id="occ_date" name="occasion_date"></label>
+            <label class="form-label">Create Your Custom Message <input type="text" name="body"></label>
+            <label class="form-label">When Would You Like To Send Your Greeting? <input type="date" id="sent_dt" 
+                 name="send_date"></label>
+          </form>
+        
+ 
+  <button type="submit">Submit</button>
+</div> 
+</div>
     <div class="col-12 col-md col-lg-4">
+      <legend><h3>Make Sure This Message is Unique * </h3></legend>
       <table class="table table table-hover table-striped 
                     table-responsive-md">
         <thead>
@@ -33,8 +39,8 @@
             <th scope= "col">Type of Greeting</th>
             <th scope= "col">Greeting</th>
             <th scope= "col">Event Date</th>
-            <th scope= "col">Send Date <button type="button" 
-                class="btn btn-outline-info">see more</button></th>
+            <th scope= "col">Send Date<th scope= "col"><button type="button" 
+              class="btn btn-outline-info">see more</button></th>          
           </tr>
         </thead>
         {% for greeting in greetings|reverse %}
@@ -49,19 +55,21 @@
             <td>{{greeting.occasion.title}}</td> 
             <td>{{greeting.occasion.occasion_date}}</td> 
             <td>{{greeting.send_date}}</td>
+            <td></td>
           </tr>
           {% endfor %}
-        <button type="submit">Submit</button>
+       
       </table>
       </form>
-      <div class="col-12 col-md col-lg-4">
+      <div class="container-md"></div>
+      <div class="row">
         <button id= "send">Send All Greetings</button>
     </div>
   <div class="col-12 col-md col-lg-4">
-  <legend><h3>Logout</h3></legend>
+  <legend><h3>Worry no more...We will remember for you bye!</h3></legend>
       <div>
         <form action="/logout" method="POST"> 
-        <button type="submit">Logout</button>
+        <button type="submit">LOGOUT</button>
         </form> 
       </div>
       </div>

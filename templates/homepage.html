@@ -13,64 +13,67 @@
 
 
 <div class="h-100 d-flex justify-content-center">
+  <legend><h1>Occasional Occasion Reminder</h1></legend>
 </div>
- <h1>Occasional Occasion Reminder</h1>
- <legend><h2>Create an Account</h2></legend> 
- </div>
+
+
 
   <div class="container">
        <div class="row">
-           <div class="flex-col-4 col-md col-lg-6">
-          <image 
+           <div class="flex-col-3 col-md col-lg-6">
+            <image 
             src="https://media.giphy.com/media/H8jyqaUEKlmvAeURSK/giphy.gif" 
             alt="logo">    
-          </div>
-        <div class="flex=col-6 col-md col-lg-4">
-            <form action="/register" method="POST">
-                <div class="mb-3">
-                <label class="form-label">What is your first name? <input type="text" 
-                       name="fname"></label>
-                </div>
-                <div class="mb-3">
-                <label class="form-label">What is your last name? <input type="text" name="lname"></label>
-                </div>
-                <div class="mb-3">
-                <label class="form-label">Email <input type="email" id="email" name="email"
-                       placeholder="chtheratio@example.com"></label>
-                </div>  
-                <div class="mb-3">
-                <label class="form-label">Phone <input type="tel" id="phone" name="phone"
-                       pattern="[0-9]{3}[0-9]{3}[0-9]{4}" required
-                       placeholder="Format: 4159351807"></label>   
-                </div>                    
-                <div class="mb-3">
-                <label class="form-label">Password <input type="text" name="password"></label>
-                </div>
-                   <button type="submit">Submit</button>
-                </form>  
-            </div> 
+           </div>
+           
+         
+       <!-- <div class="h-100 d-flex justify-content-center"> -->
+              <legend><h2 class="align-center">Create an Account</h2></legend> 
+          <div class="form-label mb-3">
+            <label>Forget no more...We will remember for you... 
+              <br> Occasional Occasion Reminder will help you 
+              never miss an important occasion again. 
+            </label>
           </div>
         </div>
-    <div class="row h-100 d-flex justify-content-center align-items-center">
-      <legend><h3 class="col-12 col-md col-lg-4">Login</h3></legend>  
-        <form action="/login" method="POST">
-          <label class="form-label">Email <input type="email" name="email"></label>
-          <label class="form-label">Password <input type="text" name="password" ></label>
-         <button type="submit">Submit</button>
-        </form>
-    <div class="col-12 col-md col-lg-4">
-     <div><i class="fa fa-align-left" aria-hidden="true"></i>
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="home">contacts</li>
-          </ol>
-        </nav>
       </div>
-    </div>
-  </div>
-</div>
 
+      <div class="container">
+        <div class="row">
+            <div class="flex-col-5 col-md col-lg-10">
+              <div> 
+                <form action="/register" method="POST">               
+                  <label class="form-label mb-3">What is your first name? <input type="text" 
+                         name="fname"></label>
+                  <label class="form-label mb-3">What is your last name? <input type="text" name="lname"></label>
+                  <label class="form-label mb-3"></label>Email <input type="email" id="email" name="email"
+                         placeholder="chtheratio@example.com"></label>
+                  <label class="form-label mb-3">Phone <input type="tel" id="phone" name="phone"
+                         pattern="[0-9]{3}[0-9]{3}[0-9]{4}" required
+                         placeholder="Format: 4159351807"></label>                    
+                  <label class="form-label mb-3">Password <input type="text" name="password"></label>
+              </div>
+              <div>
+                <button type="submit">Submit</button>
+              </div>
+              </form>         
+              <div>
+                <legend><h3>Login</h3></legend>  
+              <form action="/login" method="POST">
+                <label class="form-label mb-3">Email <input type="email" name="email"></label>
+                <label class="form-label mb-3">Password <input type="text" name="password" ></label>
+                <button type="submit">Submit</button>
+              </form>
+              <nav aria-label="breadcrumb">
+                 <ol class="breadcrumb">
+                   <li class="breadcrumb-item"><a href="#">Home</a></li>
+                   <li class="breadcrumb-item active" aria-current="home">contacts</li>
+                 </ol>
+              </nav>
+             </div>
+            </div>
+          </div>
+        </div>
 
 {% endblock %} 
 </html> 
