@@ -10,10 +10,13 @@
 {% block body %}
 <div class="container-md"></div>
     <div class="row">
-      <div class="col-12 col-md col-lg-4">
-        <h1 class="text-left">Occasional Occasion Reminder App</h1>
+      <h1 class="text-center">Occasional Occasion Reminder App</h1>
+    </div>
+    
+      
       <div class="container-md"></div>
         <div class="row">
+          <div class="col-3 col-md col-lg-6"></div>
           <legend><h2>Create Your Custom Greeting</h2></legend>
         <div>
           <form action="/occasions/{{contact.contact_id}}" method="POST">
@@ -66,7 +69,16 @@
         <button id= "send">Send All Greetings</button>
     </div>
   <div class="col-12 col-md col-lg-4">
-  <legend><h3>Worry no more...We will remember for you bye!</h3></legend>
+  <legend><h3>
+              
+              We will keep track of all your occasions, special dates, 
+              and loved ones info! Customized will be 
+              sent on date with a special Gif chosen for you 
+          
+              Your greetings have been logged and will be 
+              sent on date with a special Gif chosen for you 
+          
+              Good bye!</h3></legend>
       <div>
         <form action="/logout" method="POST"> 
         <button type="submit">LOGOUT</button>

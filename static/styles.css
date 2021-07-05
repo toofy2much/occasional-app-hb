@@ -2,45 +2,66 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
+} 
 
 html {
     font-size: 16px;
     font-family: 'Helvetica Neue', Helvetica, Arial;
+}
 style {
   overflow-y: auto;
-}
-    
-    
 } 
-body {
-    max-height: 785;
-    min-width: 1366;
-    background-image: url("https://unsplash.com/photos/vHV9B7JHEx4");
-    background-repeat: no-repeat; 
-    margin-left: 80px;
-    margin-bottom: 80px;
-    margin-right: 80px;
-}
+    
+    
 
-.container {  
+body {
+  background-image: url('/static/images/wallpaper2.png'); 
+  
+  background-size:  101% auto;
+  background-repeat: no-repeat;
+ 
+}
+  /* margin-left: 80px;
+    margin-bottom: 80px;
+    margin-right: 80px; 
+  
+  padding: 0px; 
+   
+} */
+    /* margin-left: 80px;
+    margin-bottom: 80px;
+    margin-right: 80px;  */
+     /* min-width: 101% auto;
+background-repeat: no-repeat;
+/* 
+     max-height: 785 1366
+
+   */
+/* @media (min-width: 992px) {
+      #intro {
+        margin-top: -58.59px;
+      }
+    } */
+
+.container{  
     
     min-width: 15%;
    
     max-height: 15%;
     margin-left: 80px;
-    margin-bottom: 80px;
+    
     margin-right: 80px;
 }       
 
 
 
  .form {
-   min-width: 496px;
-   max-height: 696px;
-   padding: 20px;
+   
+   padding: 10px;
    padding-top: 10px
  }   
+ /* min-width: 496px;
+   max-height: 696px; */
 
 h1 {
   font-family: 'Helvetica Neue', Helvetica, Arial;
@@ -61,7 +82,7 @@ h2, h3, h4, h5, h6 {
   font-optical-sizing: auto;
   text-shadow: 4px 4px 4px #ccc;
   outline-color: rgb(19, 2, 2);
-  padding-top: 10px;
+  padding-top: 30px;
 }
 
 
@@ -90,7 +111,7 @@ div {
     max-height: 35%;
     table-layout: auto;
     border-spacing: 2;
-    margin: 2rem;
+    margin: 8rem;
     
     
    
@@ -156,12 +177,11 @@ tr.header {
 .col-sm-4{
   padding-top: 20px;
 }
-  /* background-image: url('/static/images/wallpaper2.png'); */
-  /* height: 100vh; */
-  /* background-size:  101% auto; */
-  /* background-repeat: no-repeat; */
-  /* padding: 0px; */
-
+  /* background-image: url('/static/images/wallpaper2.png'); 
+  height: 100vh;
+  background-size:  101% auto;
+  background-repeat: no-repeat;
+  padding: 0px;  */
   
 ul {list-style-type: none;
 
