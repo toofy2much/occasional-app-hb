@@ -10,13 +10,13 @@
 {% block body %}
 
   <legend><h1>Occasional Occasion Reminder</h1></legend>
-  <div class="container-md"></div>
+  <div class="container-md">
     <div class="row ">
-      <div class="flex-col-6 col-md col-lg-12">
-        <legend><h2 class= "bg-light bg-gradient">ADD A NEW CONTACT</h2>
-      </legend>
+      <div class="flex-col-6 col-md col-lg-12 bg-light bg-gradient">
+        <legend><h2>ADD A NEW CONTACT</h2>
+        </legend>
       </div>
-      <div class="row">
+    
       <div class="flex-col-6 col-md col-lg-12 bg-light bg-gradient">
       <form action="/contacts" method="POST">
         <label class="form-label mb-3">First name of recipient? <input type="text" name="fname"></label> 
@@ -26,9 +26,9 @@
         <label class="form-label mb-3">Phone <input type="tel" id="phone" name="phone"
                pattern="[0-9]{3}[0-9]{3}[0-9]{4}" required
                placeholder="Format: 4159351807"></label> 
-       <button type="submit" class= >Submit</button> 
+       <button type="submit">Submit</button> 
       </form>
-    </div>
+      
       </div>
     </div>
   </div>
@@ -70,32 +70,30 @@
 </div> 
 <div class="container">
   <div class="row">
-    <div class="flex-col-6-col-md col-lg-12">
+    <div class="flex-col-6 col-md col-lg-12">
       <legend><h4>SELECT CONTACT</h4></legend>
+    </div>
+    </div>
       <div class="row">
-        <div class="flex-col-6-col-md col-lg-12 bg-light bg-gradient">
+        <div class="flex-col-6 col-md col-lg-12 bg-light bg-gradient">
         <label> We will keep track of all your occasions, special dates, 
           and loved ones info! Customized will be 
           sent on date with a special Gif chosen for you*</label>
-      </div>
+        </div>
     </div>
-  </div>
-</div>
-
-  <div class="row">
-      <div class="flex-col-3-col-md col-lg-6 bg-light bg-gradient">
+    <div class="row">
+      <div class="flex-col-3 col-md col-lg-6 bg-light bg-gradient">
       <form action="/select_contact" method="POST">
           <label class="form-label">Recipient's First Name <input type="text" name=fname></label>
           <label class="form-label">Last Name <input type="text" name=lname></label>
         <button type="submit">Submit</button>
       </form>
       </div>
-    
-          <div class="flex-col-2-col-md col-lg-3 bg-light bg-gradient">
+      <div class="flex-col-2 col-md col-lg-3 bg-light bg-gradient">
         <button id="send">Send All Greetings</button>
       </div>
   
-      <div class="col-2-col-md col-lg-3 bg-light bg-gradient">
+      <div class="col-2-col md col-lg-3 bg-light bg-gradient">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
              <li class="breadcrumb-item"><a href="#">home</a></li>
@@ -105,9 +103,6 @@
         </nav>
       </div>
     </div>
-  </div> 
- <div>
- </div>
-
+  </div>
 {% endblock %} 
 </html> 

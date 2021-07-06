@@ -239,7 +239,7 @@ def get_contact():
     
 
     else:
-        flash('Error contact doesnt match any entries')
+        flash('Error contact does not match any entries')
     
         return redirect("/contacts")
 
