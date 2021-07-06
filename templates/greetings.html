@@ -39,7 +39,7 @@
           <tr> 
             <th scope= "col">#</th>
             <th scope= "col">Recipient</th>
-            <th scope= "col">Type of Greeting</th>
+            <th scope= "col">Occasion</th>
             <th scope= "col">Greeting</th>
             <th scope= "col">Event Date</th>
             <th scope= "col">Send Date<th scope= "col"><button type="button" 
@@ -54,9 +54,9 @@
           <tr class= "tr_toggle">
           {% endif %}
             <th scope="row">{{greeting.greeting_id}}</th>
-            <td>{{contact.fname}}</td>
-            <td>{{greeting.body}}</td> 
+            <td>{{contact.fname}}</td>     
             <td>{{greeting.occasion.title}}</td> 
+            <td>{{greeting.body}}</td> 
             <td>{{greeting.occasion.occasion_date}}</td> 
             <td>{{greeting.send_date}}</td>
             <td></td>
