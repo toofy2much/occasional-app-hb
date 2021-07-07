@@ -43,7 +43,7 @@ The user will receive a text message when that confirms their greeting was sent,
 | Command | Description |
 | --- | --- |
 | `git clone https://github.com/toofy2much/occasional-app-hb.git` | Clone the app |
-| `cd FrienEvents` | Enter the correct repository |
+| `cd occasional-app-hb` | Enter the correct repository |
 | `pip3 install -r requirements.txt` | Install necessary requirements |
 | `python3 seed_database.py` | Create database |
 
